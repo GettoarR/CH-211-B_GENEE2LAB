@@ -1,0 +1,1253 @@
+\documentclass[12pt]{report}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{placeins} % add this to the preamble
+\usepackage{amsmath}
+\usepackage{booktabs, multirow, soul, changepage, threeparttable}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{csvsimple}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{colortbl}
+\definecolor{lightblue}{RGB}{173,216,230}
+
+\graphicspath{{images/}}
+
+\usepackage{graphicx}
+\usepackage{bmpsize}
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\bfseries}{}{0pt}{\large \thechapter.\space}
+\titlespacing*{\chapter}{0pt}{-90pt}{10pt}
+
+
+\title{
+    \textbf{Constructor University Bremen} \\
+Spring Semester 2023 \\
+\vspace{1cm}
+\textbf{Natural Science Laboratory\\
+Electrical Engineering Module II\\}
+    \vspace{1cm}
+    \textbf{Lab Report 2 - Two Port Networks} \\ 
+    
+}
+
+\author{
+    Author of the report: \textbf{Getuar Rexhepi} \\
+    \vspace{1cm} \\
+    Experiment Conducted By: \\ \textbf{Mr. Getuar Rexhepi} \\
+\textbf{Mr. Joan Collaku}
+}
+\date{Conducted on: \textbf{April 13, 2023}}
+
+\begin{document}
+
+\maketitle 
+
+\chapter{Introduction}
+The concept of a port in electrical networks refers to a pair of terminals through which current can enter or leave the network. This can be seen in two-terminal devices such as resistors, capacitors, and inductors, which result in one-port networks. In contrast, two-port networks have two separate ports for input and output and are commonly used in various fields including communications, control systems, power systems, and electronics. The two ports act as access points to the network, with the current entering one terminal leaving through the other terminal so that the net current entering the port equals zero.\\
+The six sets of parameters that relate to the terminal quantities of a two-port network are derived to characterize it. Two of these parameters are independent, and the various terms that relate these voltages and currents are called parameters. By knowing the parameters of a two-port network, we can connect them in series, parallel, or cascade, and apply the concepts to the analysis of transistor circuits and the synthesis of ladder networks.\\
+Out of 6, in this experiment, 3 parameters are studied: Z Parameters (Impedance), Y Parameters (Admittance), and ABCD Parameters (Transmission).
+\begin{center}
+\large Z Parameters:\\
+\end{center}
+\begin{equation}
+\begin{bmatrix}
+V_1 \\ I_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+Z_{11} & Z_{12} \\
+Z_{21} & Z_{22}
+\end{bmatrix}
+\begin{bmatrix}
+V_2 \\ I_2
+\end{bmatrix}
+\end{equation}
+$$ V_1 = Z_{11}I_1 + Z_{12}I_2 $$ 
+$$ V_2 = Z_{21}I_1 + Z_{22}I_2 $$
+\begin{center}
+\large Y Parameters:\\
+\end{center}
+\begin{equation}
+\begin{bmatrix}
+I_1 \\ V_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+Y_{11} & Y_{12} \\
+Y_{21} & Y_{22} 
+\end{bmatrix}
+\begin{bmatrix}
+I_2 \\ V_2
+\end{bmatrix}
+\end{equation}
+$$ I_1 = Y_{11}V_1 + Y_{12}V_2 $$
+$$ I_2 = Y_{21}V_1 + Y_{22}V_2 $$
+\begin{center}
+\large ABCD Parameters:\\
+\end{center}
+\begin{equation}
+\begin{bmatrix}
+V_1 \\ I_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+A & B \\
+C & D
+\end{bmatrix}
+\begin{bmatrix}
+V_2 \\ -I_2
+\end{bmatrix}
+\end{equation}
+$$ V_1 = AV_2 - BI_2 $$
+$$ I_1 = CV_2 - DI_2 $$
+
+
+\chapter{Execution}
+\subsection {Part 1 : Two-port Z / Y Network } 
+\textbf{Tools and equipment:} \\
+\\Elabo multimeter \\ Breadboard and electrical components
+\\Tektronix TBS1072B Oscilloscope \\
+TENMA multimeter\\  Function generator  \\ 
+\\
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.6\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/circuit1}
+  \caption{Circuit 1 used in the first part of the experiment to measure Z parameters}
+\end{figure} 
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/circuit2}
+  \caption{Circuit 2 used in the first part of the experiment to measure Y parameters}
+\end{figure} 
+\textbf{Preparation:} \\
+After the circuits in figure 2.1 and 2.2 were assembled, the supply voltage was set to 5V, and Elabo multimeter was used to measure voltage, with the best range. To measure the impedances, no voltage was supplied to either ports, and the respective current and voltages were measured so the impedances were determined using Ohm's Law. For the admittances, the output was short-circuited to measure the first Y Parameters (Y11 and Y12), and conversely the input was short circuited to measure Y22 and Y21, again using Ohm's Law.\\
+\\
+\textbf{Execution:}\\
+Firstly Z or Impedance Parameters were determined, using the circuit shown in figure 2.1 (All 5 resistors of 100$ \Omega$), and suitable methods! $Z_{11}$ and $Z_{22}$ were directly measured using the TENMA multimeter, and for the $ Z_{12}$ and $Z_{21}	$, the formulas (1.1) were used. The results can be seen in the below table:
+\begin{table}[!htp]\centering
+\large
+\begin{tabular}{lrrrrr}\toprule
+Z parameters & [$\Omega$] & &\multicolumn{2}{c}{Measurements } \\\midrule
+Z11 &1.663e+2 & &$V_1$ [V] & 1.008e+0\\
+Z12 &3.329e+1 & &$V_2$ [V] &1.007e+0 \\
+Z21 &3.333e+1 & & $I_1$ [A] &3.024e-2 \\
+Z22 &1.663e+2 & & $I_2$ [A] &3.028e-2 \\
+\bottomrule
+\end{tabular}
+\caption{Resulting Z parameters determined from measuring respective Currents and Voltages also shown as measurements}
+\label{tab: }
+\end{table}
+\\
+Similarly Y or Admittance Parameters were determined, using the circuit shown in figure 2.2.  $Y_{11}$  and  $Y_{22}$ were measured directly using TENMA multimeter, while  $Y_{12}$ and  $Y_{21}$ , the formulas (1.2) were used. The results can be seen in the table 2.2 (Measured Values are shown in the left side, with their respectve units V1,V2,I1, I2): 
+\begin{table}[!htp]\centering
+\large
+\begin{tabular}{lrrrrr}\toprule
+Y parameters & [S] & &\multicolumn{2}{c}{Measurements } \\\midrule
+Y11 &2.473e-3  & &$V_1$ [V] & 5.047e+00\\
+Y12 &-1.815e-3 & &$V_2$ [V] & 5.052e+00 \\
+Y21 &-1.797e-3 & & $I_1$ [A] & -9.170e-03 \\
+Y22 &4.028e-3  & & $I_2$ [A] & -9.067e-03 \\
+\bottomrule
+\end{tabular}
+\caption{Resulting Y parameters determined from measuring respective Currents and Voltages also shown as measurements}
+\label{tab: }
+\end{table}
+\newpage
+After circuits in figure 2.1 and figure 2.2 were connected to a voltage supply of 5V, a load of 1k$\Omega$ was used at the output. All voltages and currents at both ports, for both circuits were measured, and results are summarized in the table 2.3:
+
+\begin{table}[!htp]\centering
+\large
+\begin{tabular}{lrrrrr}\toprule
+Circuit 1 & & &Circuit 2 & \\\midrule
+V1 [V] &5.069e+0 & &V1 [V] &5.072e+0 \\
+V2 [V] &8.731e-1 & &V2 [V] &1.819e+0 \\
+I1 [A] &3.061e-2 & &I1 [A] &9.314e-3 \\
+I2 [A] &-8.780e-4 & &I2 [A] &-1.824e-3 \\
+\bottomrule
+\end{tabular}
+\caption{Resulting currents and voltages, after 5V were supplied to both circuits }
+\label{tab: }
+\end{table}
+
+To be clear, the currents were not directly measured, but instead only voltages were measured and then Ohms Law was used to determine the currents:
+$$ I = \frac{V}{R} $$
+\newpage
+\subsection {Part 2 : Interconnection of Two-port Networks } 
+In this part two two-port networks were connected in parallel and then its properties were observed! The circuit shown in figure 2.3 was assembled and then Z parameters were measured:\\
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/reports/parallel.png}
+  \caption{Parallel interconnection of circuit 1 and ciruit 2 used in the second part of the experiment to measure Z/Y parameters}
+\end{figure} \\
+Similarly to the previous part, the first two parameters were determined by measuring the impedance directly, while $Z_12$ and $Z_21$ were determined using Ohm's Law, by firstly measuring the voltage, and then determining the current. After that using the load, we can find the abovementioned Z parameters:
+\begin{table}[!htp]\centering
+\large
+\begin{tabular}{lrrrrr}\toprule
+Z parameters & [$\Omega$] & &\multicolumn{2}{c}{Measurements } \\\midrule
+Z11 &1.276e+2  & &$V_1$ [V] &1,7742e+0\\
+Z12 &3.806e+1  & &$V_2$ [V] & 1,5069e+0 \\
+Z21 &3.797e+1  & &$I_1$ [A] &3,9678e-2 \\
+Z22 &1.084e+2  & &$I_2$ [A] &4,6616e-2 \\
+\bottomrule
+\end{tabular}
+\caption{Resulting Z parameters of parallel network determined from measuring respective Currents and Voltages also shown as measurements}
+\label{tab: }
+\end{table}
+\newpage
+ After this 5V was supplied to the circuit in figure 2.3, and a load of 1k$\Omega$ was used at the output. All voltages and currents at both ports for the parallel network were measured and the results are summarized in the table 2.5:
+\begin{table}[!htp]\centering
+\large
+\begin{tabular}{lrr}\toprule
+Parallel circuit  & \\\midrule
+V1 [V] &5.066e+0 \\
+V2 [V] &1.372e+0 \\
+I1 [A] &4.005e-2 \\
+I2 [A] &-1.372e-3 \\
+\bottomrule
+\end{tabular}
+\caption{Resulting currents and voltages, after 5V were supplied to the parallel network}
+\label{tab: }
+\end{table}\\
+\subsection {Part 3 : Complex Two-port Networks / Cascading } 
+For the next part, complex two-port networks are going to be analyzed. Namely the ones shown in figure 2.4:
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.1\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/reports/complex}
+  \caption{Circuit 1 and Circuit 2 used in the third part of the experiment to measure ABCD parameters}
+\end{figure} \\
+After the circuits in figure 2.4 were assembled they were cascaded like the circuit in figure 2.5: 
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.1\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/reports/cascaded}
+  \caption{Circuit 1 and Circuit 2 cascaded used in the third part of the experiment to measure ABCD parameters}
+\end{figure} 
+\newpage
+The resulting two-port network was connected to a voltage supply from the function generator with parameters: $\hat{v} = 5V_{pp}$, at 1000Hz frequence, sine wave. In adittion, a 100$\Omega$ resistor was used to determine current. Moreover, oscilloscope was used to measure voltages and currents shown in figure 2.5.  It is worth to mention that $\hat{v1.1}$ was used as a reference voltage, from which other values were measured!
+\chapter {Evaluation - Part 1}
+
+
+\chapter {Evaluation - Part 2 }
+
+\chapter{Conclusion}
+
+
+
+    Similarly Y or Admittance Parameters were determined, using the circuit  shown in figure 2.2. Yj; and Y2 were measured directly using TENMA mul-  timeter, while Yj2 and Yo; , the formulas (1.2) were used. The results can be  seen in the table 2.2 (Measured Values are shown in the left side, with their  respectve units V1,V2,I1, 12): 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/17.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/18.jpg}
+
+\centering
+
+\end{figure}
+
+    Table 2.2: Resulting Y parameters determined from measuring respective  Currents and Voltages also shown as measurements 
+
+\vspace{10pt}
+
+    After circuits in figure 2.1 and figure 2.2 were connected to a voltage  supply of 5V, a load of 1kQ was used at the output. All voltages and currents  at both ports, for both circuits were measured, and results are summarized  in the table 2.3: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/19.jpg}
+
+\centering
+
+\end{figure}
+
+    Table 2.3: Resulting currents and voltages, after 5V were supplied to both  circuits 
+
+\vspace{10pt}
+
+    To be clear, the currents were not directly measured, but instead only  voltages were measured and then Ohms Law was used to determine the cur-  rents: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/20.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/21.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    2.0.2 Part 2: Interconnection of Two-port Networks 
+
+\vspace{10pt}
+
+    In this part two two-port networks were connected in parallel and then its  properties were observed! The circuit shown in figure 2.3 was assembled and  then Z parameters were measured: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/22.jpg}
+
+\centering
+
+\end{figure}
+
+    Figure 2.3: Parallel interconnection of circuit 1 and ciruit 2 used in the second  part of the experiment to measure Z/Y parameters 
+
+\vspace{10pt}
+
+    Similarly to the previous part, the first two parameters were determined  by measuring the impedance directly, while 7,2 and Z1 were determined  using Ohm’s Law, by firstly measuring the voltage, and then determining  the current. After that using the load, we can find the abovementioned Z  parameters: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/23.jpg}
+
+\centering
+
+\end{figure}
+
+    Table 2.4: Resulting Z parameters of parallel network determined from mea-  suring respective Currents and Voltages also shown as measurements 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/24.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    After this 5V was supplied to the circuit in figure 2.3, and a load of 1kQ  was used at the output. All voltages and currents at both ports for the par-  allel network were measured and the results are summarized in the table 2.5: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/25.jpg}
+
+\centering
+
+\end{figure}
+
+    Table 2.5: Resulting currents and voltages, after 5V were supplied to the  parallel network 
+
+\vspace{10pt}
+
+    2.0.3 Part 3: Complex Two-port Networks / Cascad-  ing 
+
+\vspace{10pt}
+
+    For the next part, complex two-port networks are going to be analyzed.  Namely the ones shown in figure 2.4: 
+
+\vspace{10pt}
+
+              Two-port impedance Network - Circuit 2    Two-port impedance Network - Circuit 1          
+
+\vspace{10pt}
+
+    Figure 2.4: Circuit 1 and Circuit 2 used in the third part of the experiment  to measure ABCD parameters 
+
+\vspace{10pt}
+
+    After the circuits in figure 2.4 were assembled they were cascaded like the  circuit in figure 2.5: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/26.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/27.jpg}
+
+\centering
+
+\end{figure}
+
+    Figure 2.5: Circuit 1 and Circuit 2 cascaded used in the third part of the  experiment to measure ABCD parameters 
+
+\vspace{10pt}
+
+    The resulting two-port network was connected to a voltage supply from  the function generator with parameters: ¢ = 5V,,, at. 1000Hz frequence, sine  wave. In adittion, a 100Q resistor was used to determine current. Moreover,  oscilloscope was used to measure voltages and currents shown in figure 2.5.  It is worth to mention that 61.1 was used as a reference voltage, from which  other values were measured! The hard copy used to determine v1.1 and il.1  is shown below: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/28.jpg}
+
+\centering
+
+\end{figure}
+
+    Figure 2.6: Hard-copy showing the reference voltage in yellow and the source  voltage in blue 
+
+\vspace{10pt}
+
+    The hard copy used to determine v2.2 and i2.2 is shown below: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/29.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/30.jpg}
+
+\centering
+
+\end{figure}
+
+    Figure 2.7: Hard-copy showing the reference voltage in yellow and the source  voltage in blue 
+
+\vspace{10pt}
+
+    Keep in mind that the phase of 01.1 is taken as 0°. Now from figures 2.6  and 2.7 we can find all values that we are interested in. These values are  summarized in the below table: 
+
+\vspace{10pt}
+
+    | vs | Vid | ota | va2 | Be |  | 7.60246.8° | 4.4240° | 0.056281.96° | 2.342167° | —0.00232167°                              
+
+\vspace{10pt}
+
+    Table 2.6: Values of voltages and currents mesaured with the oscilloscope 
+
+\vspace{10pt}
+
+    To clarify the currents I1.1 and 11.2 were found using KCL and circuit in  figure 2.5: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/31.jpg}
+
+\centering
+
+\end{figure}
+
+    Notice the sign in front of the current [2.2, that’s because we took care of  the polarity from the circuit in figure 2.5! 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/32.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    Finally the impedance in the format Z = R+jX, were measured using the  RLC Meter. The measurements of the 5 components is summarized in the  table 2.7: 
+
+\vspace{10pt}
+
+         | RLC METER Ohm Phasor         Z1,1 (CAP) 0.35814-158.431 158.43 Z — 89.87°  Z2,1 (CAP) 0.22141-149.891 149.89 Z — 89.915°  Z3,1 (IND) 4.08274 64.2131 64.34 286.362°  Z2,1 (RES) 9.57+0.16666i 9.57 Z0.99°   Z2,2 (CAP) 0.24286-157.15i 157.43 Z — 89.915°     
+
+\vspace{10pt}
+
+    Table 2.7: Impedances measured at the RLC Meter in the format Z = R+jX,  also shown in polar format 
+
+\vspace{10pt}
+
+    For the reference the figure below was used to compute the Z parameters of  the circuit in figure 2.2: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/33.jpg}
+
+\centering
+
+\end{figure}
+
+    Figure 2.8: Smart shortcut to calculate the Z parameters for the character-  istic circuit 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/34.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/35.jpg}
+
+\centering
+
+\end{figure}
+
+    3.0.1 Part 1: Two-port Z / Y Network 
+
+\vspace{10pt}
+
+    To calcualate the Z Parameters of circuit 1 and circuit 2, from the given  resistors seen in figure 2.1 and figure 2.2, we have used MATLAB. The script  is shown below: 
+
+\vspace{10pt}
+
+    \%\% Z Parameters  \% Circuit 1 resistor values in Ohm  Ri = 100;    R2 = 100;  R3 = 100;  R4 = 100;  R5 = 100;    \% Calculate Z parameters of circuit 1  Z11 = R1 + (R4*(R2+R5))/(R4+R2+R5) ;  Z12 = R3*(R5/(R2+R4+R5)) ;   Z21 = Rix(R4/(R2+R4+R5)) ;   Z22 = R3+(R5*(R2+R4) ) / (R3+R2+R4) ;   Z = [Z11, 212; Z21, 222]; 
+
+\vspace{10pt}
+
+    To find the Z parameters, resistive circuit analysis techniques were used,  seen in the code above (Resistance simplification). This code gives the Z  parameters for circuit 1: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/36.jpg}
+
+\centering
+
+\end{figure}
+
+    Similarly the Z parameters for the circuit 2, were easily calculated since the  circuit 2 is a characteristic two-port network for which Z parametersc can be  easily found using some nice tricks: 
+
+\vspace{10pt}
+
+    \% Circuit 2 resistor values in Ohm   R1 = 330;   R2 = 100;   R3 = 270;   \% Calculate Z parameters of circuit 2  Z = [R1+R3, R3; R38, R2+R3]; 
+
+\vspace{10pt}
+
+    This gives us the Z parameters for the second circuit: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/37.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/38.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    To find the Y parameters for the first and second circuit, we can first find  the Z parameters use the results to find Y parameters, since we know that  all parameters are,in someway, related to each other: 
+
+\vspace{10pt}
+
+    “\%Y parameters for the circuit 1  \% using Z parameters   Y11 = Z22 / det(Z);   Y12 = -Z12 / det(Z);   Y21 = -Z21 / det(Z);   Y22 = Z11 / det(Z);   y = [Yi1, Y12; Y21, Y22];  disp(Y);   \% Use resulting Z from above to calculate Y parameters for circuit 2  Y11 = Z(2,2)/det\_Z;   Y12 = -Z(1,2)/det\_Z;   Y21 = -Z(2,1)/det\_Z;   Y22 = Z(1,1)/det\_Z;   y = [Yi1, Y12; Y21, Y22];  disp(Y) 
+
+\vspace{10pt}
+
+    This code gives us two matrices in the form of : 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/39.jpg}
+
+\centering
+
+\end{figure}
+
+    0.0025 —0.0018    y2= | 90018 0.0040    As we can see these two Matrices’ (Z1 and Y2) entries are not that differenent  from the measured Parameters in table 2.1 and 2.2. For the Z parameters Z1,  the values seems to be almost exactly the same, and for the Y parameters  Y2, there seems to be a more distinguished error, even though the values  are stilll very accurate! The innaccuracy in this case comes mainly from the  instruments used,and the resistance of the components themselves!   To verify the voltages and currents measured, we can use Z parameters de-  termined and formulas 1.1. 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/40.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    Because of the tidious calculations we used MATLAB to find these values: 
+
+\vspace{10pt}
+
+    “Verify V1,V2 measured with Z parameters  I1 = 0.030605;   I2 = -0.000878;   Vi = Zii*I1 + Z12*12   V2 = Z21*I1 + Z22*12 
+
+\vspace{10pt}
+
+    This gives us : 
+
+\vspace{10pt}
+
+    V1=5.0716 V2 = 0.8738 
+
+\vspace{10pt}
+
+    Similarly to verify the voltages and currents measured, we can use Y param-  eters determined and formulas 1.2. Because of the tidious calculations we  used MATLAB to find these values: 
+
+\vspace{10pt}
+
+    “Verify 11,12 measured with Y parameters  Vi = 5,072;   V2 = 1,820;   Ii = Yii*V1 + Y12*V2   I2 = Y21*V1 + Y22*V2 
+
+\vspace{10pt}
+
+    This gives us: 
+
+\vspace{10pt}
+
+    I1 = 0.0093 2 = —0.0019 
+
+\vspace{10pt}
+
+    As we can see the values from table 2.3 (measured values) are very close  to the determined values shown above, for V1, V2 and I1, 12. This shows  us that our methods are correct, even though the instrumental error is still  present. 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/41.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/42.jpg}
+
+\centering
+
+\end{figure}
+
+    To compute the Z parameters of the parallel combination of circuit 1 and  circuit 2, we have used Y parameters of each circuit, and then combined them,  because in a parallel interconnection we have that the Total Y parameters  are: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/43.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/44.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    We have both Matrices Ya and Yb from the first part, so we have just to  combine them and find that (MATLAB was used again, full script shown in  Appendix): 
+
+\vspace{10pt}
+
+    \_ | 0.0087 —0.0030  ~ |—0.0030 0.0102    And then to find the Z parameters from here we have:    Y 
+
+\vspace{10pt}
+
+    Y = YA + YB   det\_Y = det(Y);   \% to find Z parameters we have  Z11 = Y(2,2)/det\_Y;   Z12 = -Y(1,2)/det\_Y;   Z21 = -Y(2,1)/det\_Y;   Z22 = Y(1,1)/det\_Y;   Z = [Z11, Z12; 221, 222]; 
+
+\vspace{10pt}
+
+    This gives us the Z parameters of the parallel interconnection: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/45.jpg}
+
+\centering
+
+\end{figure}
+
+    To compare these values with the measured ones we have: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/46.jpg}
+
+\centering
+
+\end{figure}
+
+    Table 3.1: Resulting Z parameters of parallel network compared to the cal-  culated parameters 
+
+\vspace{10pt}
+
+    As we can see from table 3.1, the calculaeted and values determined from  measurements are very accurate, which again verifies that our methods were  effective, but there is some instrumental error, becuase of the instruments  and devices used (as always)!   To verify the measured V1, V2 and I1, 12 values, similarly to the first part,  we have: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/47.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    “Verify V1,V2 measured with Z parameters  I1 = 0.04005;   I2 = -0.001372;   Vi = Zii*I1 + Z12*12   V2 = Z21*I1 + Z22*12 
+
+\vspace{10pt}
+
+    “Verify 11,12 measured with Y parameters  Vi = 5.066;    V2 = 1.3722;  I1 = Y(1,1)*V1 + Y(1,2)*V2  I2 = Y(2,1)*V1 + Y(2,2)*V2 
+
+\vspace{10pt}
+
+    From this we get: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/48.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/49.jpg}
+
+\centering
+
+\end{figure}
+
+    I1 = 0.0401 £2 = —0.0014    which compared with values in table 2.5, again verifies that the values cal-  culated are correct and very accurate, with the measured values! 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/50.jpg}
+
+\centering
+
+\end{figure}
+
+    Table 3.2: Measured currents and voltages, and calculated values 
+
+\vspace{10pt}
+
+    For a series interconnection of two two-port networks, it is theoretically pos-  sible to determine the Z-parameters of the combined network by combining  the Z-parameters of the individual networks. However, it should be noted  that this approach assumes that the input voltage across the combined net-  work is zero, which may not be the case in practical situations (like in our  lab). This is because we most likely will have a voltage drop more than OV.  In a parallel interconnection of two two-port networks, we didn’t face this  issue because the input voltage is the same across both networks, while the  output current of the combined network is the sum of the output currents of  the individual networks. 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/51.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/52.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/53.jpg}
+
+\centering
+
+\end{figure}
+
+    To determine the Z parameters of the first complex Two-port Network MAT-  LAB and the shortcut shown in figure 2.8 was used: 
+
+\vspace{10pt}
+
+    \% Measured values of impedances  \% Define the complex numbers in rectangular form  zi = 0.35814 - 158.431;    z2 = 0.22141 - 149.89i;  zZ3 = 4.0827 + 64.2131;  z4 = 9.57 + 0.16666i;    z5 = 0.24286 - 157.15i; 
+
+\vspace{10pt}
+
+    \% from the shortcut learned in class  “\%Z parameters of first circuit   Z11\_1 = zi + 23;   Z12\_1 zZ3;   Z21\_1 zZ3;   Z22\_1 = 23 + 22;   Z1 = [Z11\_1, Z12\_1; Z21\_1, Z22\_1]  “\%phasor form   cart2pol\_matrix(Z1) ; 
+
+\vspace{10pt}
+
+    This gives us the Z parameters which were converted to phasor form (using  a function that we defined on MATLAB): 
+
+\vspace{10pt}
+
+    Z1— 94.32162 — 87.3014° 64.3427286.3620°  ~ | 64.3427286.3620° — 85.7850Z — 87.1241° 
+
+\vspace{10pt}
+
+    In the same way we found the Z parameters for the second circuit which were  also converted to phasor form: 
+
+\vspace{10pt}
+
+    “\%Z parameters of second circuit    Z11\_2 = 24 + 25;  Z12\_2 = 25;  Z21\_2 = 25;  Z22\_2 = z5+0;    Z2 = [Z11\_2, Z12\_2; Z21\_2, 222 2]  phasor form  cart2pol\_matrix(Z2) ; 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/54.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    which gives us: 
+
+\vspace{10pt}
+
+    79 = 157.2897Z — 86.4232° 157.1502Z — 89.9115°  ~ |157.1502Z — 89.9115°  157.1502Z — 89.9115° 
+
+\vspace{10pt}
+
+    To calculate the transmission parameters (ABCD) we can convert both Z  parameters to ABCD parameters and then multiply those matrices, since  they are cascaded in the circuit shown in figure 2.5: 
+
+\vspace{10pt}
+
+    \% To determine ABCD parameters  Al = Z11\_1/Z21\_1;   B1 = det\_Z1/Z21\_1;   C1 = 1/221\_1;   Di = 222\_1/2Z21\_1;   ABCD1 = [A1, B1; C1, D1]; 
+
+\vspace{10pt}
+
+    A2 = Z11\_2/221\_2;   B2 = det\_Z2/Z21\_2;   C2 = 1/2Z21\_2;   D2 = Z22\_2/Z21\_2;   ABCD2 = [A2, B2; C2, D2];   \%Casceded ABCD Parameters   ABCD = ABCD1*ABCD2   \% Convert complex matrix to polar form  cart2pol\_matrix (ABCD) ; 
+
+\vspace{10pt}
+
+    The above code gives us the final ABCD parameters converted to phasor  form: 
+
+\vspace{10pt}
+
+    1.8713Z — 167.5365° —69.51932123.2646°  0.02402 — 83.1211° 1.34642 — 167.1460°    To verify the currents and voltages measured V1, V2, and I1, 12, we can use  the above ABCD parameters and formula 1.3, to find that:    ABCD = 
+
+\vspace{10pt}
+
+    measured current  I22mag = -0.0023;  I22ang = deg2rad(167) ;  jmeausred voltage  V22mag = 2.34;   V22ang = deg2rad(167) ; 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/55.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    convert to rectangular form for calulations  real\_part\_I122 = 122mag * cos(I22ang) ;  imag\_part\_I22 = I22mag * sin(122ang) ;  real\_part\_V22 = V22mag * cos(V22ang) ;  imag\_part\_V22 = V22mag * sin(V22ang) ;  I22 = real\_part\_I22 + imag\_part\_I22*1i;  V22 = real\_part\_V22 + imag\_part\_V22*1i;  \%calculate Vil and I11   Vi1\_I11 = ABCD * [V22; -122];   Vii = Vi1\_111(1);   I11 = V11\_111(2); 
+
+\vspace{10pt}
+
+    where we have used the equality: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/56.jpg}
+
+\centering
+
+\end{figure}
+
+    and found that: 
+
+\vspace{10pt}
+
+    V, = 4.43822 — 2.4665° I, = 0.0567280.7629° 
+
+\vspace{10pt}
+
+    From table 2.6 we can see that the measured values of V; and J, were: 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/57.jpg}
+
+\centering
+
+\end{figure}
+
+    which are clearly very close the the determined values using the ABCD Pa-  rameters.   We can notice that the phase of the voltage is slightly off. Remember that  V, was the reference voltage shown in figure 2.6, which we used to determine  other values. However, the phase shift is reasonable, since we measured the  components at the RLC meter in the room 54, which even though was cal-  ibrated, it was on for a long time. This together with other instrumental  errors may have contributed to this phase of the voltage, which again is very  close to 0. As for the magnitudes of voltages we can clearly see that they are  correct up to the second decimal. The current phase is also very close the  the measured one. It is worthy to mention that in the phase determination,  the oscilloscope attenuation may have also contributed to the error. 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/58.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/59.jpg}
+
+\centering
+
+\end{figure}
+
+    In this lab experiment the properties of two-port networks were measure and  analyzed. In particular, Z and Y parameters of different two-port networks,  were measured and calculated, networks were combined to form more com-  plex circuits, and verifying measured values using the calculated parameters.   In part 1, the Z and Y parameters of two resistive circuits are calcu-  lated and compared with the measured values. Any differences between the  calculated and measured values are discussed. In part 2, the Z parameters  of parallel connected resistive circuits are calculated by combining the mea-  sured Z or Y parameters from part 1. The combined values are compared to  directly measured ones, and the validity of using Z or Y parameters to verify  measured values is discussed. In part 3, the Z parameters of two complex  circuits are determined, and the resulting cascaded ABCD parameters are  calculated using these Z parameters. The calculated values are compared  to the measured values, and differences are discussed. It is important to  note that the measured values in this experiment were correctly measured.  Any differences between the calculated and measured values are likely due  to instrumental errors, rather than measurement errors. Instrumental er-  rors include imperfections in the RLC meter, oscilloscope attenuation, and  the resistance of other components! Overall, the experiment was carried out  correctly and satisfactory results were obtained. 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/60.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/61.jpg}
+
+\centering
+
+\end{figure}
+
+    [1] Alexander, C. K., \&amp; O., S. M. N. (2021). Fundamentals of Electric  Circuits. McGraw-Hill Education. 
+
+\vspace{10pt}
+
+    [2] Pagel, U. (April, 2023) — http://uwp-raspi-lab.jacobs.jacobs-  university.de/01.0.generaleelab/01.2.generaleelab2/20230118-ch-211-  b-manual.pdf. 
+
+\vspace{10pt}
+
+    [3] Matlab. MathWorks. Retrieved April 21, 2023, from  https: //www.mathworks.com/products/matlab.html 
+
+\vspace{10pt}
+
+    [4] Abreu, G. T. F. (2021). Two port networks [Lecture notes]. Gen EE I.  Constructor Univeristy Bremen 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/62.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/63.jpg}
+
+\centering
+
+\end{figure}
+
+    MATLAB script used during the evaluation of the report, includind com-  ments and explainations, and a function that converts rectangular entries of  a matrix to polar form. Code is divided in sections for convenience: 
+
+\vspace{10pt}
+
+    hh Circuit 1   \%close all   f\%clear all   \% Circuit 1 resistor values in Ohm  Ri = 100;    R2 = 100;  R3 = 100;  R4 = 100;  R5 = 100;    \% Calculate Z parameters of circuit 1  Z11 = R1 + (R4*(R2+R5))/(R4+R2+R5) ;  Z12 = R3*(R5/(R2+R4+R5)) ;   Z21 = Ri*(R4/(R2+R4+R5)) ;   Z22 = R3+(R5*(R2+R4) ) / (R3+R2+R4) ;   Z = [Z11, 212; Z21, 222]   “\%Y parameters for the circuit 1  Yi1 = 222 / det(Z);   y12 = -Z12 / det(Z);   Y21 = -Z21 / det(Z);   Y22 = Z11 / det(Z);   y = [yi1, Y12; Y21, Y22] 
+
+\vspace{10pt}
+
+    “Verify V1,V2 measured with Z parameters  I1 = 0.030605;   I2 = -0.000878;   Vi = Zii*I1 + Z12*12   V2 = Z21*I1 + Z22*12 
+
+\vspace{10pt}
+
+    hh Circuit 2   \% Circuit 2 resistor values in Ohm  Ri = 330;   R2 = 100;   R3 = 270; 
+
+\vspace{10pt}
+
+    \% Calculate Z parameters of circuit 2  Z = [R1+R3, R3; R3, R2+R3]  det\_Z = det(Z); 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/64.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    \% Use results to calculate Y parameters  Y11 = Z(2,2)/det\_Z;   Y12 = -Z(1,2)/det\_Z;   Y21 = -Z(2,1)/det\_Z;   Y22 = Z(1,1)/det\_Z;   y = [Y11, Y12; Y21, Y22] 
+
+\vspace{10pt}
+
+    “Verify 11,12 measured with Y parameters  Vi = 5.072;   V2 = 1.8195;   Ii = Yil*Vi + Y12*Vv2   I2 = Y21*Vi + Y22*V2   uh) Parameters of Parallel connection   “Y = [YA] + [YB]   \% Convert Z parameters from Circuit 1 to Y parameters  Z = [166.6667, 33.3333; 33.3333, 166.6667] ;  det\_Z = det(Z);   Yila = Z(2,2)/det\_Z;   Y12a = -Z(1,2)/det\_Z;   Y21a = -Z(2,1)/det\_Z;   Y22a = Z(1,1)/det\_Z;   YA = [Yila, Y12a; Y21a, Y22a]   \%from above we have   YB = [0.0025, -0.0018; -0.0018, 0.0040]  Y = YA + YB   det\_Y = det(Y);   \% to find Z parameters we have   Z11 = Y(2,2)/det\_Y;   Z12 = -Y(1,2)/det\_Y;   Z21 = -Y(2,1)/det\_Y;   Z22 = Y(1,1)/det\_Y;   Z = [Z11, Z12; Z21, 222] 
+
+\vspace{10pt}
+
+    “Verify V1,V2 measured with Z parameters  I1 = 0.04005;   I2 = -0.001372;   Vi = Zii*I1 + Z12*12 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/65.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    V2 = Z21*I1 + Z22*I2 
+
+\vspace{10pt}
+
+    “Verify 11,12 measured with Y parameters   Vi = 5.066;   V2 = 1.3722;   I1 = Y¥(1,1)*V1 + Y(1,2)*V2   I2 = ¥(2,1)*V1 + Y(2,2)*V2   hh Complex Two Port   \% Measured values of impedances   \% Define the complex numbers in rectangular form  zi = 0.35814 - 158.431;    z2 = 0.22141 - 149.89i;  zZ3 = 4.0827 + 64.2131;  z4 = 9.57 + 0.16666i;    z5 = 0.24286 - 157.15i; 
+
+\vspace{10pt}
+
+    \% from the shortcut learned in class  “\%Z parameters of first circuit  Z11\_1 = zi + 23;   Z12\_1 = 23;   Z21\_1 = 23;   Z22\_1 = 23 + 22;   Z1 = [Z11\_1, Z12\_1; Z21\_1, Z22\_1]  “\%phasor form   cart2pol\_matrix(Z1) ;   det\_Zi = det(Z1);   “\%Z parameters of second circuit    Z11\_2 = 24 + 25;  Z12\_2 = 25;  Z21\_2 = 25;  Z22\_2 = z5+0;    Z2 = [Z11\_2, Z12\_2; Z21\_2, 222 2]  “\%phasor form   cart2pol\_matrix(Z2) ;   det\_Z2 = det(Z2); 
+
+\vspace{10pt}
+
+    \% To determine ABCD parameters  Al = Z11\_1/Z21\_1; 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/66.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    B1 = det\_Z1/Z21\_1;   C1 = 1/Z21\_1;   Di = 222\_1/Z21\_1;   ABCD1 = [A1, B1; Ci, D1]; 
+
+\vspace{10pt}
+
+    A2 = Z11\_2/Z21\_2;   B2 = det\_Z2/Z21\_2;   C2 = 1/Z21\_2;   D2 = 222\_2/221\_2;   ABCD2 = [A2, B2; C2, D2]; 
+
+\vspace{10pt}
+
+    \%Casceded ABCD Parameters  ABCD = ABCD1*ABCD2 
+
+\vspace{10pt}
+
+    \% Convert complex matrix to polar form  cart2pol\_matrix (ABCD) ; 
+
+\vspace{10pt}
+
+    measured current   I22mag = -0.0023;   I22ang = deg2rad(167) ;   jmeausred voltage   V22mag = 2.34;   V22ang = deg2rad(167) ;   convert to rectangular form for calulations  real\_part\_I122 = 122mag * cos(I22ang) ;  imag\_part\_I22 = I22mag * sin(122ang) ;  real\_part\_V22 = V22mag * cos(V22ang) ;  imag\_part\_V22 = V22mag * sin(V22ang) ;  I22 = real\_part\_I22 + imag\_part\_I22*1i;  V22 = real\_part\_V22 + imag\_part\_V22*1i;  \%calculate Vil and I11   Vi1\_I11 = ABCD * [V22; -122];   Vii = Vi1\_111(1);   I11 = V11\_111(2); 
+
+\vspace{10pt}
+
+    fprintf(’?V11  fprintf(’?I11    h.4f < \%.4f° \n’, abs(V11), rad2deg(angle(V11)));  h.4f < \%.4f° \n’, abs(111), rad2deg(angle(I11))); 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/67.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    function [Result] = cart2pol\_matrix (ABCD)    end    \{angle\_ABCD, rho\_ABCD] = cart2pol(real(ABCD), imag(ABCD)) ;  D = rad2deg(angle\_ABCD) ;  Result = zeros(size(rho\_ABCD, 1), 2*size(rho\_ABCD, 2));  Result (:,1:2:end) = rho\_ABCD;  Result(:,2:2:end) = D;  \% Display the result in mag<angle format  for i = 1:size(Result,1)  for j = 1:size(Result,2)/2  mag = Result (i,2*j-1);  angle\_deg = Result (i,2*j);  fprintf(?\%.4f < \%.4f° °, mag, angle\_deg);  end  fprintf(’\n’);  end 
+
+\vspace{10pt}
+
+    Data from previous experiment: 
+
+\vspace{10pt}
+
+    Component = [Q)] ELABO range [kQ]         R4 8223 20  R3 2196 20  Rl 2199 200 
+
+\vspace{10pt}
+
+    Table 6.1: Part 1.1 Measurements 
+
+\vspace{10pt}
+
+         Component [Q]         Dekade value 81900  Measured decade(with ELABO) (200k[Q]) 82340     
+
+\vspace{10pt}
+
+    Table 6.2: Part 1.2 Measurements 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/68.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+         Range [V] Elabo voltage [V] Vout [V] Range [mV]         20 1.0073 -0.219 40  200 10 -0.241 400 
+
+\vspace{10pt}
+
+    Table 6.3: Part 2.1 Measurements 
+
+\vspace{10pt}
+
+    Component [kQ] Range    Z1 5,995 2  ZA 8,185 2 
+
+\vspace{10pt}
+
+    Table 6.4: Part 3.1 Measurements 
+
+\vspace{10pt}
+
+    Calculated Decade RLC meter         Radj = 485 Ohm Radj = 485 Ohm = Z4 = 488-6.8182  Cadj = 22.3nF Cadj = 23.3 nF     
+
+\vspace{10pt}
+
+    Table 6.5: Part 3.1 Measurements 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/YARH1Jy/localstore/ok7q9p3waassets/69.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+\end{document}
+
+
+\chapter{References}
+
+\end{document}

@@ -1,0 +1,668 @@
+\documentclass[12pt]{report}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{placeins} % add this to the preamble
+\usepackage{amsmath}
+\usepackage{booktabs, multirow, soul, changepage, threeparttable}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{csvsimple}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+
+
+\definecolor{lightblue}{RGB}{173,216,230}
+
+\graphicspath{{images/}}
+
+\usepackage{graphicx}
+\usepackage{bmpsize}
+
+\titleformat{\chapter}[display]
+{\normalfont  \bfseries}{}{0pt}{   \thechapter.\space}
+\titlespacing*{\chapter}{0pt}{-90pt}{10pt}
+
+
+\title{
+    \textbf{Constructor University Bremen} \\
+Spring Semester 2023 \\
+\vspace{1cm}
+\textbf{Natural Science Laboratory\\
+Electrical Engineering Module II\\}
+    \vspace{1cm}
+    \textbf{Lab Report 3 - Filters} \\ 
+    
+}
+
+\author{
+    Author of the report: \textbf{Getuar Rexhepi} \\
+    \vspace{1cm} \\
+    Experiment Conducted By: \\ \textbf{Mr. Getuar Rexhepi} \\
+\textbf{Mr. Joan Collaku}
+}
+\date{Conducted on: \textbf{April 20, 2023}}
+
+\begin{document}
+
+\maketitle 
+
+\chapter{Introduction}
+ Filters have been studied extensively, and a lot of research has gone into their theory, design, and construction. In simple terms, a filter is an electronic circuit that selectively allows certain frequencies of signals to pass through while blocking or reducing the amplitude of unwanted frequencies. As a frequency-selective device, a filter can be used to limit the frequency spectrum of a signal to some specified band of frequencies. Filters are the circuits used in radio and TV receivers to allow us to select one desired signal out of a multitude of broadcast signals in the environment. A filter is a passive filter if it consists of only passive elements R, L, and C. It is said to be an active filter if it consists of active elements (such as transistors and op amps) in addition to passive elements R, L, and C. \\
+There are different types of filters that are commonly used in electrical engineering. The first type is a lowpass filter, which allows low frequencies to pass while blocking high frequencies. The second type is a highpass filter, which allows high frequencies to pass while blocking low frequencies. The third type is a bandpass filter, which allows frequencies within a specific frequency range to pass through while blocking or reducing the amplitude of frequencies outside that range. Lastly, there is the bandstop filter, which does the opposite of the bandpass filter, allowing frequencies outside a specific range to pass through while blocking or reducing the amplitude of frequencies within that range. However in this experiment we are going to study only the Low-pass and Band-Pass Filters.\\
+Filters have several important properties that describe their behavior:
+\begin{itemize}
+    \item The frequency response of a filter is a measure of how it responds to an input signal with varying frequencies but constant amplitude. It is characterized by the magnitude of the filter's response in dB and the phase shift relative to the input signal in radians, both as a function of frequency. The order of a filter describes how effectively it suppresses unwanted frequencies, with simple filters like those in our experiment being first-order filters.
+    \item The cutoff frequency, also known as the corner frequency, is the frequency above or below which the filter's power output is half the power of the passband, corresponding to a voltage output that is 1/2 of the voltage in the passband. This occurs at around -3 decibels and is referred to as the -3dB point.
+    \item In the case of bandpass and notch filters, there are two cutoff frequencies, and their geometric mean is known as the center frequency. The geometric mean of two numbers, f1 and f2, is given by the square root of their product, i.e., $ f_{bw} = \sqrt{f1 \cdot f2} $.
+    \item Bandwidth: The difference between the upper and lower cutoff frequencies in a bandpass or notch filter.
+    \item Time constant ($\tau$): In an RC circuit, $\tau$ is equal to the product of the circuit resistance and the circuit capacitance. It is the time required to charge the capacitor, through the resistor, to 63.2\% of full charge or to discharge it to 36.8\% of its initial voltage. These values are derived from the mathematical constant e, specifically $1 - e^{(-1)}$ and $e^{(-1)}$ respectively.
+   \item Angular frequency $(\omega)$: A scalar measure of rotation rate, where one revolution is equal to $2\pi$:
+$$ \omega = \frac{2\pi}{T}= 2\pi f $$
+\end{itemize}
+We are interested in the properties of Low-Pass filter, which ish shown in the figure 1.1:
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.35\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/lowpass.png}
+  \caption{2 circuits showing how Low pass filters can be implemented}
+\end{figure}
+A low pass circuit allows signals with low frequencies to pass through without much change, while attenuating high frequency signals and causing a negative phase shift in the output signal compared to the input signal. Two types of passive low pass circuits, RL and RC, are shown above. The voltage divider formula is used to calculate the amplitude ratio $\underline A (\omega)$ and the phase shift $ \phi$, with complex form used for AC calculations. This process is similar to the one used in the previous section. We have two combinations, RL and RC, but in our case we are going to use the second. The latter and the high pass filter have the following Transfer Functions:
+$$\underline A(\omega) =  \frac{1}{R+j \omega C} \hspace{3cm} \underline A(\omega) =  \frac{1}{1+\frac{1}{j \omega RC}}$$
+
+The formulas for the magnitude and the phase are also given as:
+$$|A| = \frac{1}{\sqrt{1 + (\omega RC)^2}} \hspace{3cm} |A| = \frac{1}{\sqrt{1 + \frac{1}{(\omega RC)^2}}} $$
+$$\phi = -\arctan(\omega RC) \hspace{3cm} \phi = \arctan(\frac{1}{\omega RC})$$
+The next filter that we are going to analyze is the Band-Pass filter, shown in figure 1.2:
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/bandpass.png}
+  \caption{Circuit showing how Band pass filters can be implemented with a combination of high pass and low pass filter}
+\end{figure}
+A band-pass filter selectively allows frequencies within a specified range to pass through while reducing the amplitude of frequencies outside that range. One way to create this type of filter is by using a combination of resistors, inductors, and capacitors (RLC circuit). The easiest method to construct a band-pass filter is by combining a low-pass filter, which allows low-frequency signals to pass, and a high-pass filter, which allows high-frequency signals to pass. To calculate the magnitude and frequency response, we combine the formulas for the high pass and low pass filters:
+$$A_{hi}(j\omega) = \frac{V_{out_{hi}}}{V_{in}} \hspace{3cm} A_{lo}(j\omega) = \frac{V_{out_{lo}}}{V_{out_{hi}}}$$
+\begin{equation}
+A = 20 \cdot \log_{10} \left( \frac{V_{\text{out}}}{V_{\text{in}}} \right)
+\end{equation}
+To visualize the effect of filters on different signals we have the so-called Bode-plots. A Bode magnitude plot is a logarithmic graph that shows the magnitude in decibels (dB) of a system's frequency response against frequency on a logarithmic scale. Similarly, a Bode phase plot is a logarithmic graph that shows the phase of a system's frequency response against frequency on a logarithmic scale. The magnitude-frequency plot in a Bode plot can often be approximated as straight lines, which is known as an asymptotic Bode plot. This approximation is valid when the frequency is far from the corner frequency, where the magnitude response changes from the passband to the stopband. The slope of the straight line depends on the order of the filter and whether it is a high-pass or low-pass filter. The phase-frequency plot may also show asymptotic behavior for high- and low-pass filters, but it typically has more complex behavior for band-pass and band-stop filters. \\
+\\ In addition to the Bode plots we have the nyquist plots. Nyquist plot is a graphical representation of a system's frequency response. The plot is created by sweeping the frequency as a parameter and plotting the real part of the transfer function on the X-axis and the imaginary part on the Y-axis in Cartesian coordinates. 
+\vspace{-0.3cm}
+\begin{figure}[!htp]
+    \centering
+    \begin{subfigure}[b]{0.35 \textwidth}
+        \centering
+        % Include your figure here
+        \includegraphics[width=0.8\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/bodeplot.png}
+        \label{fig:bode_plot}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/nyquist.png}
+        \label{fig:nyquist_plot}
+    \end{subfigure}%
+    \caption{Example of Bode and Nyquist plots}
+    \label{fig:bode_and_nyquist}
+\end{figure}
+
+\chapter{Execution}
+\subsection {Part 1 : Low-Pass filter } 
+\textbf{Tools and equipment:} \\
+\\ Breadboard \\
+ R1 = 22k $k\Omega $\\
+C1 = 1.5 nF \\
+Tektronix TBS1072B Oscilloscope
+\\  Function generator \\
+\\
+\textbf{Execution:}\\
+After the circuit shown in figure 2.1 was assembled, the function generator was connected to it using the BNC to Kleps cable. Oscilloscope was used to measure both input and output signal .Ch1 probes was used to measure the input and Ch2 probes  was used to measure the output. The average function was used in the oscilloscope for a better setting. The frequency of the function generator was varied between 50Hz to 100Khz, in 1, 2, 5 steps. \\
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/lowpass1.png}
+  \caption{Low pass filter used during the first part}
+\end{figure}
+\\
+The values of input and output amplitude and phase were measured and are  displayed in the table 2.1 below:
+\begin{table}[!htp]\centering
+\begin{tabular}{lrrrr}\toprule
+Frequency [Hz] &V1 [V] &V2 [V] &Phase [deg] \\\midrule
+5.00e+1 &1.02e+1 &1.00e+1 &-7.20e-1 \\
+1.00e+2 &1.02e+1 &1.00e+1 &-1.44e+0 \\
+2.00e+2 &1.02e+1 &1.00e+1 &-2.30e+0 \\
+5.00e+2 &1.02e+1 &1.00e+1 &-7.20e+0 \\
+1.00e+3 &1.02e+1 &9.92e+0 &-1.29e+1 \\
+2.00e+3 &1.00e+1 &9.20e+0 &-2.19e+1 \\
+5.00e+3 &1.00e+1 &6.80e+0 &-4.75e+1 \\
+1.00e+4 &1.00e+1 &4.24e+0 &-6.37e+1 \\
+2.00e+4 &1.00e+1 &2.30e+0 &-7.45e+1 \\
+5.00e+4 &1.00e+1 &9.60e-1 &-8.47e+1 \\
+1.00e+5 &1.00e+1 &4.88e-1 &-8.71e+1 \\
+\bottomrule
+\end{tabular}
+\caption{Input and Output values for the low pass filter and phase between them}\label{tab: }
+\end{table}\\
+\newpage
+An example of how the values in the table above were measured can be seen in the figure 2.2:
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/F0006TEK.png}
+  \caption{Hard-copy from oscillscope showing how input, output and phase shift were measured}
+\end{figure}\\
+\newpage
+\vspace{-1cm}
+\subsection {Part 2 : RC-Band-Pass filter }
+\textbf{Execution:}\\
+To build a RC Band-Pass Filter, 2 Resistors (R1 = 10.0 k$\Omega$ and R2 = 8.2 k$ \Omega$) and 2 Capacitors (C1 = 100 nF and C2 = 1.5 nF ) were used. The circuit in figure 2.2 was assembled only after the right combination of RC circuits was found from the cuttoff frequencies calculated with the formulas above. Then the function generator (sine wave with 5Vpp) was connected with the help of BNC-to-Kleps cable to the input of the circuit. Oscilloscope was used to measure the input as well as output.\\
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.56\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/bandpass.png}
+\caption{Implementation of Band-Pass filter using a high-pass and low-pass filter}
+\end{figure}
+The results are summarized in the table below: 
+\vspace{-1.05cm}
+\begin{table}[!htp]\centering
+\begin{tabular}{lrrrr}\toprule
+Frequency [Hz] &V1 [V] &V2 [V] &Phase [deg] \\\midrule
+5.00e+1 &1.02e+1 &3.04e+0 &7.27e+1 \\
+1.00e+2 &1.02e+1 &5.36e+0 &5.65e+1 \\
+2.00e+2 &1.02e+1 &7.80e+0 &3.77e+1 \\
+5.00e+2 &1.02e+1 &9.44e+0 &1.51e+1 \\
+1.00e+3 &1.02e+1 &9.82e+0 &4.32e+0 \\
+2.00e+3 &1.02e+1 &9.76e+0 &-5.75e+0 \\
+5.00e+3 &1.02e+1 &9.04e+0 &-1.91e+1 \\
+1.00e+4 &1.00e+1 &7.64e+0 &-3.76e+1 \\
+2.00e+4 &1.00e+1 &5.24e+0 &-5.56e+1 \\
+5.00e+4 &1.00e+1 &2.48e+0 &-7.48e+1 \\
+1.00e+5 &1.00e+1 &1.28e+0 &-8.21e+1 \\
+\bottomrule
+\end{tabular}
+\caption{Input and Output values for the band pass filter and phase between them}\label{tab: }
+\end{table}
+\chapter {Evaluation }
+
+\subsection {Part 1 : Low-Pass Filter } 
+To graph the Bode magnitude and phase plot from the measured and calculated values, MATLAB was used.To better compare the graphs, they were plotted on top of each other. The graphs and tables can be seen in the below figures:\\
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=1\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/combined.pdf}
+\caption{The Magnitude and Phase plot using the measured values from oscilloscope (blue) compared with the magnitude and phase plot generated from calculated values (green)}
+\end{figure}\\
+\begin{table}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Frequency (Hz)} & \textbf{Magnitude (dB)} & \textbf{Phase (degrees)} \\ \hline
+50 & -0.172 & -0.72 \\ \hline
+100 & -0.172 & -1.44 \\ \hline
+200 & -0.172 & -2.30 \\ \hline
+500 & -0.172 & -7.20 \\ \hline
+1000 & -0.242 & -12.9 \\ \hline
+2000 & -0.724 & -21.9 \\ \hline
+5000 & -3.35 & -47.5 \\ \hline
+10000 & -7.45 & -63.7 \\ \hline
+20000 & -12.8 & -74.5 \\ \hline
+50000 & -20.4 & -84.7 \\ \hline
+100000 & -26.2 & -87.1 \\ \hline
+\end{tabular}
+\caption{Measured values used to generate Figure 3.1}
+\end{table}
+\begin{table}[!htp]\centering
+\begin{tabular}{lrrr}\toprule
+Frequency &Magnitude &Phase \\\midrule
+50 &-0.000467 &-0.593979 \\
+100 &-0.001867 &-1.187830 \\
+200 &-0.007462 &-2.374639 \\
+500 &-0.046429 &-5.918855 \\
+1000 &-0.182810 &-11.714013 \\
+2000 &-0.689157 &-22.523308 \\
+5000 &-3.169762 &-46.033027 \\
+10000 &-7.242103 &-64.252558 \\
+20000 &-12.599950 &-76.442314 \\
+50000 &-20.353496 &-84.490435 \\
+100000 &-26.343966 &-87.238835 \\
+\bottomrule
+\end{tabular}
+\caption{Calculated values from MATLAB used to generate Figure 3.1 (green)}
+\end{table}
+For the figure 3.1, measured values shown in table 3.1 were used and the script shown in the Appendix and the formula used below! For the second graph in figure 3.1 (green) the formula of the transfer function for low pass filter was used:
+$$ A = 20 \cdot \log_{10} \left( \frac{V_{\text{out}}}{V_{\text{in}}} \right) \hspace{2cm} \underline A(\omega) =  \frac{1}{R+j \omega C} $$
+From which the magnitude and the phase were found in the following way:
+$$|A| = \frac{1}{\sqrt{1 + (\omega RC)^2}} \hspace{2cm} \phi = -\arctan(\omega RC) $$
+Using MATLAB, I was able to generate table 3.2, where we can see the values used to generate figure 3.1 (Green graph). The scipt and methods used to do this can be seen in the appendix.\\
+As we can see in the figures 3.1, with the same frequencies used, the Bode plot generated by measured values is not as smooth as the Bode plot generated from the formula of the transfer function for a low pass filter. The measured values may have some amount of noise, which can result in fluctuations in the Bode plot. This can happen due to various reasons, such as measurement errors, interference, or electromagnetic noise, or imperfect components.\\
+After that, the so-called "-3dB frequency" or the cutoff frequency was calculated using the formula provided for RC combination and MATLAB:
+$$ f_{-3dB} = \frac{1}{2\pi R C} = 4.8229e+03 $$
+To compare this value with the measured value of the cutoff frequency we can approximate it from the graph in figure 3.1 (green):\\
+As we can see from picture 3.2, with the help of MATLAB, the cutoff frequency of -3.35 dB happens at about 5000Hz, which verifies the calculated value of 4823 Hz with the formula. This values may not be the same but they are very comparable. Taking into the account that we couldn't find the frequency corresponding to exactly -3 dB, we still got a satisfactory result.
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/cutoff.pdf}
+\caption{The Magnitude Bode Plot showing approximately where the cutoff frequency is, with the measured values}
+\end{figure}
+\FloatBarrier
+To find the gradient of the magnitude of the transfer function, we can find the slope using two frequency points. For this MATLAB was used (full script provided at appendix) :
+\begin{verbatim}
+% calculating the gradient (slope) per decade using 10Khz and 100Khz
+slope = (mag(11)-mag(8))/(log10(f(11))-log10(f(8)))
+slope =
+  -18.7500
+\end{verbatim}
+This give us the value: -18.7500 (dB/decade). Which is reasonably okay, since we know that this value theoretically should be -20 (dB/decade).\\
+Next, the limits of the amplitude ratio in dB and the phase of the Lo Pass were found, when : \\
+
+a) $f \ll f_{-3dB}$
+
+b) $f \gg f_{-3dB}$
+
+c) $f = f_{-3dB}$\\
+\newpage
+The limit of $|A|$ and $\phi$ was found using the formulas above for the magnitude and the phase, in the following way:
+$$ \lim_{f \to \infty} \frac{1}{\sqrt{1 + (2\pi f RC)^2}} = 0 \hspace{2cm}  \lim_{f \to \infty} = -\arctan(2 \pi f RC)= -90^\circ$$
+The results are summarized in the table below:
+\begin{table}[!htp]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Case} & \textbf{Amplitude} & \textbf{Phase} \\ \hline
+$f \gg f_{-3dB}$ & 0 & $-90^\circ$ \\ \hline
+$f = f_{-3dB}$ & $\sqrt{\frac{1}{2}}$ & $-45^\circ$ \\ \hline
+$f \ll f_{-3dB}$ & 1& $0	^\circ$ \\ \hline
+\end{tabular}
+\caption{The behaviour of Amplitude and phase for each limit}
+\end{table}\\
+The above calculations were also checked using MATLAB:
+\begin{verbatim}
+syms f
+maglim_to_infty = limit(1/(sqrt(1+(f/cutoff_f).^2)), f, Inf)
+maglim_to_3dB = limit(1/(sqrt(1+(f/cutoff_f).^2)), f, cutoff_f)
+maglim_to_0 = limit(1/(sqrt(1+(f/cutoff_f).^2)), f, 0)
+
+phaselim_to_infty = limit(-atan(2*pi*f*R*C),f , Inf)
+phaselim_to_3dB = limit (-atan(2*pi*f*R*C),f , cutoff_f)
+phaselim_to_0 = limit(-atan(2*pi*f*R*C),f ,0)
+\end{verbatim} 
+
+As we can from the table above, the results are as we expected, because at high frequencies out the  filter won't pass anything, and at low frequncies it will pass everything. This is correct, because we have a "Low-pass" filter!
+\newpage
+\subsection {Part 2 : RC-Band-Pass filter }
+To graph the Bode magnitude and phase plot from the measured and calculated values, MATLAB was used. To better compare the graphs, they were plotted on top of each other. The graph can be seen in the below figure:
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=1\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/bandpasscom.pdf}
+\caption{The Magnitude and Phase plot using the measured values from oscilloscope (blue) compared with the magnitude and Phase plot generated from the calculated values (green)}
+\end{figure}
+
+\begin{table}[!htp]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Frequency (Hz)} & \textbf{Magnitude (dB)} & \textbf{Phase (degrees)} \\
+\hline
+50 & -10.5 & 72.7 \\
+\hline
+100 & -5.59 & 56.5 \\
+\hline
+200 & -2.33 & 37.7 \\
+\hline
+500 & -0.673 & 15.1 \\
+\hline
+1000 & -0.33 & 4.32 \\
+\hline
+2000 & -0.383 & -5.75 \\
+\hline
+5000 & -1.05 & -19.1 \\
+\hline
+10000 & -2.34 & -37.6 \\
+\hline
+20000 & -5.61 & -55.6 \\
+\hline
+50000 & -12.1 & -74.8 \\
+\hline
+100000 & -17.9 & -82.1 \\
+\hline
+\end{tabular}\\
+\caption{Magnitude and phase measured values}
+\label{tab:mag_phase_response}
+\end{table}
+\begin{table}[!htp]\centering
+\begin{tabular}{lrrr}\toprule
+Frequency &Magnitude &Phase \\\midrule
+50 &-10.4658 &72.3380 \\
+100 &-5.4817 &57.4153 \\
+200 &-2.1316 &37.6264 \\
+500 &-0.4256 &15.4439 \\
+1000 &-0.1345 &4.6238 \\
+2000 &-0.1300 &-4.2366 \\
+5000 &-0.6088 &-19.3042 \\
+10000 &-2.0349 &-36.7862 \\
+20000 &-5.3011 &-56.6424 \\
+50000 &-12.0227 &-75.3084 \\
+100000 &-17.8338 &-82.5360 \\
+\bottomrule
+\end{tabular}
+\caption{Values found using MATLAB, used to generate figure 3.3}\label{tab: }
+\end{table}
+\newpage
+For the figure 3.3, measured values shown in table 3.3 were used and the script shown in the Appendix! The values in dB were generated using the formula:
+$$ A = 20 \cdot \log_{10} \left( \frac{V_{\text{out}}}{V_{\text{in}}} \right) $$
+For the second graph in figure 3.3 (green) the formula of the transfer function for band pass filter was used. This formula was derived by combining the high pass and low pass transfer functions, but computations were done using MATLAB:
+$$ \underline A_{hi}(\omega) = \frac{1}{1 + \frac{1}{(\omega RC)^2}}  \hspace{2cm} \underline A_{lo}(\omega) =  \frac{1}{R+j \omega C} $$
+From which the magnitude and the phase was found to be:
+$$|A| = \frac{1}{\sqrt{1 + (\omega RC)^2}} \cdot \frac{1}{\sqrt{1 + \frac{1}{(\omega RC)^2}}} \hspace{1.5cm} \phi = -\arctan(\omega RC) +\arctan(\frac{1}{\omega RC})$$ 
+I was able to generate table 3.4 using MATLAB, for the figure 3.3 (green).\\
+As we can see in the figure 3.3, with the same frequencies used, the Bode plot generated by measured values is not as smooth as the Bode plot generated from the formula of the transfer function for a band pass filter. Not only it is not as smooth as the latter, but also the calculated one is also more complete. That is because we didn't have many low frequencies. As for the shape, the measured values may have some amount of noise, which can result in fluctuations in the Bode plot. This can happen due to various reasons, such as measurement errors, interference, or electromagnetic noise, or imperfect components.\\
+Next , the center-frequency, the cutoff frequencies and the bandwidth were calculated from the components given and formulas for the high pass and low pass filters:
+\begin{verbatim}
+%Calculating the cutoff frequencies, center-frequency, bandwidth
+cutoff_f2 = 1/(2*pi*R2*C2)
+cutoff_f1 = 1/(2*pi*R1*C1)
+center_f = sqrt(cutoff_f2*cutoff_f1)
+bandwidth = cutoff_f2 - cutoff_f1
+\end{verbatim}
+This code gives us: 
+\newpage
+$$ cutoff\_f2 = 1.2939e+04 \hspace{2cm} cutoff\_f1 = 159.1549 $$
+$$ center\_f = 1.4351e+03 \hspace{2cm} bandwidth = 1.2780e+04$$
+To calculate the phase shift at the center frequencies, we use the values that we found above, and formulas for the phase of high pass and low pass filter, also found above: \vspace{-0.1cm}
+\begin{verbatim}
+%phase shift at cutoff frequency
+phase_shift2 = rad2deg(atan(1/(2*pi*cutoff_f2*R2*C2)))
+phase_shift1 = rad2deg(-atan(2*pi*cutoff_f1*R1*C1))
+\end{verbatim}
+\vspace{-0.1cm}
+From the code above we get :
+$$phase\_shift2 = 45^\circ \hspace{2cm } phase\_shift1 = -45^\circ $$
+Which intiutively is correct since the phase shift for the low-pass is negative and positive for high-pass! From this we can find the total phase shift:
+$$ phase\_shift2 +  phase\_shift1 = 45^\circ - 45^\circ  = 0^\circ $$
+Below there is a hard-copy from the oscilloscope where the phase shift was measured at exactly 159.00 Hz (cuttoff frequency for the high pass):
+\vspace{-0.2cm}
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/F0007TEK.png}
+  \caption{Phase shift measurement at 159Hz}
+\end{figure}\\
+As we can see the phase shift measured is slighly less than the phase shift calculated theoretically. However, this is reasonable taking into the account the oscilloscope's attenuation and imperfective nature of components used! Comparing values from tables 3.4 and table 3.5, we can see clearly see that magnitudes and phases are very close, for the same frequencies. Errors are mainly generated from intruments, but our methods seems to be effective!
+\newpage
+To draw the nyquist plot for the frequencies used, MATLAB was used again:
+\begin{verbatim}
+%% nyquist plot for the frequency values
+R1 = 10*10^3;
+C1 = 100*10^-9;
+R2 = 8.2*10^3;
+C2 = 1.5*10^-9; 
+f = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
+H_hp = tf([R1*C1 0],[R1*C1 1]);
+h_LP = tf(1, [R2*C2 1]);
+H_bp = h_LP * H_hp;
+nyq_bp = nyquistplot(10 * H_bp, f);
+\end{verbatim}
+The graph generated can be seen below:
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/nyquistplt.pdf}
+  \caption{Nyquist Plot generated using MATLAB for the frequecy values}
+\end{figure}
+\chapter{Conclusion}
+The objective of this experiment was to construct and analyze a low-pass filter and a bandpass filter, and compare their measured properties with the theoretical values. The Bode phase and magnitude plots were used as reliable tools for the analysis, and the calculations demonstrated that the measurements were accurate.\\
+In the first part of the experiment, a low-pass circuit was built on a breadboard and its input and output were measured. The Bode plots were then drawn, and the theoretical value-based plots were also shown for comparison. The plots were found to be similar, and the calculated values of the cut-off frequency and phase shift were comparable with those shown in the plots. The slope of the plots was negative, which was confirmed by the calculations of the gradient. Several significant cases were considered, such as when the frequency values tended to 0, $f_-3dB$, and infinity. For the first case, the magnitude was 1, and the phase shift was 0 degrees, indicating that the signal passed through the filter with low frequency. In the second case, the cutoff frequency values were obtained as expected, and in the third case, the magnitude was 0, and the phase shift was -90 degrees, indicating that the signal did not pass through the filter due to high frequency.\\
+In the second part of the experiment, a bandpass filter circuit was constructed by combining a high-pass and a low-pass filter. The Bode plot and calculations agreed with each other, and the plot showed that only a certain range of frequencies could pass through the filter, indicating that the frequencies were inside the band. The phase shift changed values from positive to negative. A Nyquist plot was also compiled, which described the output behavior and its phase. The output values increased, reached a peak value, and then started to decrease again. The phase shift became smaller and smaller.\\
+Overall, the experimental values were found to be highly accurate, with the only sources of error being the oscilloscope error and the non-ideal components and conditions.
+\setcounter{chapter}{5}
+\begin{thebibliography}{9}
+\bibitem{texbook}
+Alexander, C. K., \&amp; O., S. M. N. (2021). Fundamentals of Electric Circuits. McGraw-Hill Education.
+\bibitem{ltextbook}
+Pagel, U. (April, 2023) http://uwp-raspi-lab.jacobs.jacobs-university.de/01.0.generaleelab/01.2.generaleelab2/20230118-ch-211-b-manual.pdf.
+\bibitem{texbook}
+Matlab. MathWorks. Retrieved April 21, 2023, from https://www.mathworks.com/products/matlab.html 
+\bibitem{textbook}
+Abreu, G. T. F. (2021).Filters [Lecture notes]. Gen EE I. Constructor Univeristy Bremen
+\end{thebibliography}
+\chapter{Appendix}
+MATLAB script used during evaluation and not only. The code is split in several sections for convenience:
+\begin{verbatim}
+% Evaluation Part 1
+%% Magnitude and Phase Bode plot Low pass filter with measured values
+f = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
+mag = [-0.172, -0.172, -0.172, -0.172, -0.242, -0.724, -3.35, -7.45, 
+-12.8, -20.4, -26.2];
+phase = [-0.72, -1.44, -2.30, -7.20, -12.9, -21.9, -47.5, -63.7, -74.5,
+ -84.7, -87.1];
+
+figure;
+subplot (2,1,1)
+plot(f, mag,'LineWidth', 1.5)
+xlabel('Frequency')
+ylabel('Magnitude (dB)')
+title('Magnitude Plot')
+set(gca, 'XScale', 'log')
+
+%showing the cuttof frequency at about -3dB
+%uncomment to see the cutoff frequency
+xline(5000, 'k--');
+text(5000, -3.35, '(-3.35 dB, 5000 Hz)');
+
+subplot (2,1,2)
+plot(f, phase,'LineWidth', 1.5)
+xlabel('Frequency') 
+ylabel('Phase (Deg)')
+title('Phase Plot')
+set(gca, 'XScale', 'log')  
+
+
+% calculating the gradient (slope) per decade using 10Khz and 100Khz
+slope = (mag(11)-mag(8))/(log10(f(11))-log10(f(8)))
+
+%% Magnitude and Phase Bode plot using Formula 
+f = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
+R = 22*10^3;
+C = 1.5*10^-9;
+
+Mag_lowpass = 20*log10(1./(sqrt(1+(2*pi*f*R*C).^2)));
+Phase_lowpass = rad2deg(-atan(2.*pi*f*R*C));
+
+T = table(f', Mag_lowpass', Phase_lowpass', 'VariableNames', 
+{'Frequency', 'Magnitude', 'Phase'});
+disp(T);
+writetable(T, 'table1.csv');
+
+figure;
+subplot(2,1,1); % create two plots in one figure
+semilogx(f, Mag_lowpass, 'LineWidth', 1.5);
+xlabel('Frequency (Hz)');
+ylabel('Magnitude (dB)');
+title('Magnitude Plot Low-Pas');
+
+subplot(2,1,2);
+semilogx(f, Phase_lowpass,'LineWidth', 1.5);
+xlabel('Frequency (Hz)');
+ylabel('Phase (deg)');
+title('Phase Plot Low-Pass');
+
+% Calculating the cuttof frequency using the formula
+cutoff_f = 1/(2*pi*R*C)
+
+% Calculating the phase shift at cuttof frequency
+phase_shift = rad2deg(-atan(2*pi*cutoff_f*R*C))
+
+%calculating the limit of magnitude and phase behaviour for each case
+syms f
+maglim_to_infty = limit(1/(sqrt(1+(f/cutoff_f).^2)), f, Inf)
+maglim_to_3dB = limit(1/(sqrt(1+(f/cutoff_f).^2)), f, cutoff_f)
+maglim_to_0 = limit(1/(sqrt(1+(f/cutoff_f).^2)), f, 0)
+
+phaselim_to_infty = limit(-atan(2*pi*f*R*C),f , Inf)
+phaselim_to_3dB = limit (-atan(2*pi*f*R*C),f , cutoff_f)
+phaselim_to_0 = limit(-atan(2*pi*f*R*C),f ,0)
+
+% Evaluation Part 2
+%% Magnitude and Phase Bode plot Band pass filter with measured values
+f = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
+mag = [-10.5, -5.59, -2.33, -0.673, -0.33, -0.383, -1.05, -2.34, -5.61,
+ -12.1, -17.9];
+phase = [72.7, 56.5, 37.7, 15.1, 4.32, -5.75, -19.1, -37.6, -55.6,
+ -74.8, -82.1];
+
+figure;
+subplot (2,1,1)
+plot(f, mag,'LineWidth', 1.5)
+xlabel('Frequency')
+ylabel('Magnitude (dB)')
+title('Magnitude Plot Band-Pass')
+set(gca, 'XScale', 'log')
+
+subplot (2,1,2)
+plot(f, phase,'LineWidth', 1.5)
+xlabel('Frequency') 
+ylabel('Phase (Deg)')
+title('Phase Plot Band-Pass')
+set(gca, 'XScale', 'log')
+
+%% Magnitude and Phase Bode plot using Formula for Band Pass
+
+f = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
+R1 = 10*10^3;
+C1 = 100*10^-9;
+R2 = 8.2*10^3;
+C2 = 1.5*10^-9; 
+
+Mag_lowpass = (1./(sqrt(1+(2*pi*f*R2*C2).^2)));
+Phase_lowpass = -atan(2.*pi*f*R2*C2);
+
+Mag_highpass = (1./(sqrt(1+1./(2*pi*f*R1*C1).^2)));
+Phase_highpass = atan(1./(2.*pi*f*R1*C1));
+
+Mag_bandpass = 20*log10(Mag_lowpass .* Mag_highpass);
+Phase_bandpass = rad2deg(Phase_lowpass + Phase_highpass);
+
+T = table(f', Mag_bandpass', Phase_bandpass', 'VariableNames',
+ {'Frequency', 'Magnitude', 'Phase'});
+disp(T);
+writetable(T, 'table2.csv');
+
+figure;
+subplot(2,1,1); % create two plots in one figure
+semilogx(f, Mag_bandpass, 'LineWidth', 1.5);
+xlabel('Frequency (Hz)');
+ylabel('Magnitude (dB)');
+title('Magnitude Plot Band-Pas');
+
+subplot(2,1,2);
+semilogx(f, Phase_bandpass,'LineWidth', 1.5);
+xlabel('Frequency (Hz)');
+ylabel('Phase (deg)');
+title('Phase Plot Band-Pass');
+
+%Calculating the cutoff frequencies, center-frequency, bandwidth
+cutoff_f2 = 1/(2*pi*R2*C2)
+cutoff_f1 = 1/(2*pi*R1*C1)
+center_f = sqrt(cutoff_f2*cutoff_f1)
+bandwidth = cutoff_f2 - cutoff_f1
+%phase shift at cutoff frequency
+phase_shift2 = rad2deg(atan(1/(2*pi*cutoff_f2*R2*C2)))
+phase_shift1 = rad2deg(-atan(2*pi*cutoff_f1*R1*C1))
+%% nyquist plot for the frequency values
+R1 = 10*10^3;
+C1 = 100*10^-9;
+R2 = 8.2*10^3;
+C2 = 1.5*10^-9; 
+f = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
+H_hp = tf([R1*C1 0],[R1*C1 1]);
+h_LP = tf(1, [R2*C2 1]);
+H_bp = h_LP * H_hp;
+nyq_bp = nyquistplot(10 * H_bp, f);
+title('Nyquist Diagram UR = f(f)');
+\end{verbatim}
+Data from previous experiment: \\
+\begin{table}[!htp]\centering
+\begin{tabular}{lrrrr}\toprule
+Frequency [Hz] &V1 [V] &V2 [V] &Phase [deg] \\\midrule
+1.00e+3 &4.88e-1 &4.92e-1 &1.79e+2 \\
+2.00e+3 &4.76e-1 &4.88e-1 &1.79e+2 \\
+5.00e+3 &4.76e-1 &4.88e-1 &1.78e+2 \\
+1.00e+4 &4.68e-1 &4.78e-1 &1.78e+2 \\
+2.00e+4 &4.76e-1 &4.88e-1 &1.76e+2 \\
+5.00e+4 &4.76e-1 &4.84e-1 &1.71e+2 \\
+1.00e+5 &4.76e-1 &4.80e-1 &1.65e+2 \\
+2.00e+5 &4.76e-1 &4.56e-1 &1.48e+2 \\
+5.00e+5 &4.76e-1 &3.04e-1 &1.05e+2 \\
+1.00e+6 &4.84e-1 &1.51e-1 &6.19e+1 \\
+2.00e+6 &4.76e-1 &6.08e-1 &3.35e+1 \\
+5.00e+6 &4.76e-1 &1.36e-1 &-4.55e+1 \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 6 Part 1 Results}\label{tab: }
+\end{table}
+
+\begin{table}[!htp]\centering
+\begin{tabular}{lrrrr}\toprule
+Frequency [Hz] &V1 [V] &V2 [V] &Phase [deg] \\\midrule
+1.00e+3 &4.88e-1 &2.22e-1 &1.79e+2 \\
+2.00e+3 &4.76e-1 &2.20e-1 &1.79e+2 \\
+5.00e+3 &4.76e-1 &2.20e-1 &-1.79e+2 \\
+1.00e+4 &4.76e-1 &2.20e-1 &1.79e+2 \\
+2.00e+4 &4.76e-1 &2.20e-1 &1.77e+2 \\
+5.00e+4 &4.76e-1 &2.20e-1 &1.74e+2 \\
+1.00e+5 &4.76e-1 &2.20e-1 &1.70e+2 \\
+2.00e+5 &4.76e-1 &2.16e-1 &1.57e+2 \\
+5.00e+5 &4.76e-1 &1.94e-1 &1.23e+2 \\
+1.00e+6 &4.76e-1 &1.18e-1 &6.80e+1 \\
+2.00e+6 &4.76e-1 &4.32e-2 &2.15e+1 \\
+5.00e+6 &4.72e-1 &8.00e-3 &? \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 6 - Part 1 Results}\label{tab: }
+\end{table}
+
+\begin{table}[!htp]\centering
+\begin{tabular}{lrrrr}\toprule
+Frequency [Hz] &V1 [V] &V2 [V] &Phase [deg] \\\midrule
+1.00e+3 &4.72e-1 &4.76e+0 &1.79e+2 \\
+2.00e+3 &4.68e-1 &4.68e+0 &1.78e+2 \\
+5.00e+3 &4.64e-1 &4.68e+0 &1.75e+2 \\
+1.00e+4 &4.64e-1 &4.64e+0 &1.71e+2 \\
+2.00e+4 &4.68e-1 &4.52e+0 &1.63e+2 \\
+5.00e+4 &4.68e-1 &3.48e+0 &1.33e+2 \\
+1.00e+5 &4.76e-1 &1.98e+0 &1.09e+2 \\
+2.00e+5 &4.76e-1 &1.01e+0 &9.43e+1 \\
+5.00e+5 &4.76e-1 &4.00e-1 &7.68e+1 \\
+1.00e+6 &4.84e-1 &1.88e-1 &6.18e+1 \\
+2.00e+6 &4.72e-1 &8.00e-2 &7.32e+1 \\
+5.00e+6 &4.72e-1 &0.00e+0 &? \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 6 - Part 2 Results}\label{tab: }
+\end{table}
+
+\begin{table}[!htp]\centering
+\begin{tabular}{lrrrrr}\toprule
+Frequency [Hz] &V1 [V] &V2 [V] &Phase [deg] & \\\midrule
+1.00e+1 &9.68e-1 &1.62e+1 &1.00e+2 &\multirow{3}{*}{DC COUPLING} \\
+2.00e+1 &9.68e-1 &8.00e+0 &9.48e+1 & \\
+5.00e+1 &9.68e-1 &3.28e+0 &9.34e+1 & \\
+\hline
+1.00e+2 &9.60e-1 &1.64e+0 &9.22e+1 &\multirow{4}{*}{AC COUPLING} \\
+2.00e+4 &9.60e-1 &8.16e-1 &9.15e+1 & \\
+5.00e+2 &9.60e-1 &3.28e-1 &9.21e+1 & \\
+1.00e+3 &9.76e-1 &1.64e-1 &9.03e+1 & \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 6 - Part 2 Results}\label{tab: }
+\end{table}
+
+\begin{table}[!htp]\centering
+\begin{tabular}{p{4cm}p{4cm}rrr} \toprule
+Current at Ammeter [A] &Voltage over Ammeter [V] &V- [V] &V+ [V] &Output [V] \\\midrule
+9.90e+1 &1.4190e-1 &5.08e+0 &4.94e+0 &-1.4257e+0 \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 6 - Part 3 Results}\label{tab: }
+\end{table}
+\end{document}

@@ -1,0 +1,965 @@
+\documentclass[12pt]{report}
+
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{placeins} % add this to the preamble
+\usepackage{amsmath}
+\usepackage{booktabs, multirow, soul, changepage, threeparttable}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{csvsimple}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{colortbl}
+\definecolor{lightblue}{RGB}{173,216,230}
+
+\graphicspath{{images/}}
+
+\usepackage{graphicx}
+\usepackage{bmpsize}
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\bfseries}{}{0pt}{\large \thechapter.\space}
+\titlespacing*{\chapter}{0pt}{-90pt}{10pt}
+
+
+\title{
+    \textbf{Constructor University Bremen} \\
+Spring Semester 2023 \\
+\vspace{1cm}
+\textbf{Natural Science Laboratory\\
+Electrical Engineering Module II\\}
+    \vspace{1cm}
+    \textbf{Lab Report 1 - AC Properties and Measurements} \\ 
+    
+}
+
+\author{
+    Author of the report: \textbf{Getuar Rexhepi} \\
+    \vspace{1cm} \\
+    Experiment Conducted By: \\ \textbf{Mr. Getuar Rexhepi} \\
+\textbf{Mr. Joan Collaku}
+}
+\date{Conducted on: \textbf{March 31, 2023}}
+
+\begin{document}
+
+\maketitle
+
+\chapter{Introduction}
+The aim of this experiment is to investigate the characteristics of AC signals and demonstrate the behavior of basic AC circuits.  Moreover the properties of periodic AC waves, including guidelines for describing waveform properties are going to be studied. When referring to DC parameters such as voltage and current, capital letters ($U$ and $I$) are typically used since these values are constant over time. However, when describing time-varying signal properties for AC, lowercase letters are used. More concretely, $$v(t) = \hat{v} \sin \omega t $$   $$\underline{v} = \underline{v} \angle \varphi = \underline{v}(\cos \varphi + j \sin \varphi)$$ where $\hat{v}$ represents the peak or amplitude of a voltage, $\bar{v}$ represents the mean value of a voltage, and $\underline{v}$ is a complex voltage. Additionally, RMS values are denoted in capital letters, as they are considered equivalent to DC values. However, when dealing with circuits that include energy-storing components such as capacitors and inductors, it's essential to exercise caution while working with RMS values. \\
+Periodic signals are sequences that repeat themselves at regular intervals, and they are represented by $$ v(t) = v(t + nT)$$ where v(t) is any periodic function, T is the time of one period, and f is the frequency of the signal. The arithmetic mean value of a periodic function is used to obtain information about its effects over time. The root mean square value is another parameter used to compare the energy of different electrical quantities of signals, and it is calculated by taking the square root of the integral of the function over one period T.\\
+The RMS value can be measured using specialized instruments or by using an oscilloscope or multimeter. The DC value is the mean value of the signal, and the AC value is the RMS value without the DC offset. The RMS value can be calculated using a formula that takes into account both the DC and AC values. The formulas for these special values are given as: \\
+Arithmetic mean $$ \bar{v} = \frac{1}{T} \int_{t_0}^{t_0+T}v(t)dt $$
+Root mean square $$ V=\sqrt{\frac{1}{T}\int_{t_0}^{t_0+T}v(t)^2 dt} $$
+ $$ I=\sqrt{\frac{1}{T}\int_{t_0}^{t_0+T}i(t)^2 dt}  $$
+when we have a superimposed DC value: 
+$$ I = \sqrt {(I_{DC})^2+(I_{AC})^2} $$
+The rules of Kirchoff's KCL and KVL also apply to time-variable signals, where the sum of currents flowing into a node is equal to the sum flowing out, and the sum of electrical potential differences around any closed circuit must be zero. Calculations are done in the same way as DC circuits, but with complex RMS values. For AC circuits with only resistive components, measuring RMS values is enough. However, for circuits with reactive components, measuring both magnitude and phase shift is necessary, which can be done with a multimeter for magnitude and an oscilloscope for phase shift at low frequencies.
+\chapter{Execution}
+\subsection {Part 1 - Measure AC Signal Properties} 
+\textbf{Tools and equipment:} \\
+Elabo multimeter\\Tektronix TBS1072B Oscilloscope \\
+TENMA multimeter\\  Function generator  \\ 
+\\
+\textbf{Preparation:} \\
+The function generator, the oscilloscope and the TENMA multimeter were connected with a BNC cable, a BNCT-connector, and a BNC-Banana connector. The entire chain at the multimeter was terminated using a 50Ω resistor. The function generator was set to a Sine Wave, with a frequency of 1KHz, with an amplitude set to 2Vpp (Peak to peak voltage) at the oscilloscope and with a DC offset of 0V. \\
+It was checked that peak to peak voltage is 2V.\\
+\\
+\textbf{Results:} \\
+The measurements were first carried using the osilloscope and the function generator with 0V offset, and then the voltages were recorded from the TENMA multimeter. Same procedure was followed to record the voltages for 1V offset. The result can be seen in the following tables:
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/F0000TEK.png}
+  \caption{Sine Wave and its properties with 0V offset}
+\end{figure} 
+
+\begin{table}[ht]
+\centering
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} Vpp [V] & Vmean [V] & Vrms [V] \\
+\hline
+2.06 & -0.0047 & 0.723 \\
+\hline
+\end{tabular}
+\caption{Voltage measurements of sine wave with 0V offset from oscilloscope\\}
+\label{tab:voltage1} 
+\end{minipage}
+\hfill
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} V(DC)[V] & V(AC)[V] & V(AC+DC) [V] \\
+\hline
+0 & 0.708 & 0.708 \\
+\hline
+\end{tabular}
+\caption{Voltage measurements of sine wave with 0V offset from multimeter}
+\label{tab:voltage2a}
+\end{minipage}
+\end{table}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/F0001TEK.png}
+  \caption{Sine Wave and its properties with 1V offset}
+\end{figure} 
+
+\begin{table}[ht]
+\centering
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} Vpp [V] & Vmean [V] & Vrms [V] \\
+\hline
+2.04 & 1.02 & 1.25 \\
+\hline
+\end{tabular}
+\caption{Voltage measurements of sine wave with 1V offset from oscilloscope \\}
+\label{tab:voltage1b} 
+\end{minipage}
+\hfill
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} V(DC)[V] & V(AC)[V] & V(AC+DC) [V] \\
+\hline
+0.99 & 0.707 & 1.226 \\
+\hline
+\end{tabular}
+\caption{Voltage measurements of sine wave with 1V offset from multimeter}
+\end{minipage}
+\end{table}
+\FloatBarrier % add this to keep all tables before the next subsection
+\subsection{Part 1 - Measure AC Signal Properties}
+\textbf{Preparation:} \\
+For this part the same tools and equipment were used again. The setup was slightly changed:\\
+Now we have a exponential falling wave of 1Khz, set using the function generator, the amplitude was set to 2 Vpp, and the offset was first 0V and then 1V. The figure from hard copies is shown below:\\
+\\
+\textbf{Results:} \\
+The measurements were first carried using the osilloscope and the function generator with 0V offset, and then the voltages were recorded from the TENMA multimeter. Same procedure was followed to record the voltages for 1V offset. The result can be seen in the following tables:
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/F0002TEK.png}
+  \caption{Exponential fall Wave and its properties with 1V offset}
+\end{figure} 
+\begin{table}[!ht]
+\centering
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} Vpp [V] & Vmean [V] & Vrms [V] \\
+\hline
+2.04 & -0.704 & 0.854 \\
+\hline
+\end{tabular}
+\caption{Voltage measurements of exponential fall wave with 0V offset from oscilloscope\\}
+\label{tab:voltage1} 
+\end{minipage}
+\hfill
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} V(DC)[V] & V(AC)[V] & V(AC+DC) [V] \\
+\hline
+-0.673 & 0.476 & 0.818 \\
+\hline
+\end{tabular}
+\caption{Voltage measurements of exponential fall wave with 0V offset from multimeter}
+\label{tab:voltage2a}
+\end{minipage}
+\end{table}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/F0003TEK.png}
+  \caption{Exponential fall Wave and its properties with 1V offset}
+\end{figure} 
+\begin{table}[ht]
+\centering
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} Vpp [V] & Vmean [V] & Vrms [V] \\
+\hline
+2.02 & 0.333 & 0.586 \\
+\hline
+\end{tabular}
+\caption{Voltage measurements of exponential fall wave with 1V offset from oscilloscope \\}
+\label{tab:voltage1b} 
+\end{minipage}
+\hfill
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} V(DC)[V] & V(AC)[V] & V(AC+DC) [V] \\
+\hline
+0.322 & 0.473 & 0.573 \\
+\hline
+\end{tabular}
+\caption{Voltage measurements of exponential fall wave with 1V offset from multimeter}
+\end{minipage}
+\end{table}
+\FloatBarrier % add this to keep all tables before the next subsection
+\subsection{Part 2 - Measure AC Circuit Properties}
+\textbf{Tools and equipment:} \\
+Elabo multimeter\\Tektronix TBS1072B Oscilloscope \\
+TENMA multimeter\\  Function generator  \\ 
+100nF Capacitor, 100mH Inductor\\
+1.8KOhm and 500Ohm resistors\\
+\\
+\textbf{Preparation:} \\
+The circuit in the figure 2.5 was assembled on the breadboard and then was analyzed using the oscilloscope. The function generator was used to generate a sine wave of 10Vpp , with 0V offset and 1KHz frequency. The Elabo multimeter was used to determine the exact values of the resistance.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/ACcircuit.png}
+  \caption{RLC Circuit analyzed during the second part of the experiment\\}
+\end{figure}
+\\
+\textbf{Results:}\\
+The reactance and resistance are then measured by the RLC meter with the help of the instructor. R is the
+resistance in ohms measured at the multimeter (index s and p stands for series and parallell respectively). The values for the reactance and resistance
+are shown in the table 2.9: 
+\begin{table}[t]
+\centering
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\rowcolor{lightblue} \textbf{Component} & \textbf{Value} \\
+\hline
+$C_p$ & 108.66nF \\
+$R_p$ & 365.321k$\Omega$ \\
+$L_s$ & 101.91mH \\
+$R_s$ & 372.27$\Omega$ \\
+$R$ & 1792$\Omega$ \\
+\hline
+\end{tabular}
+\caption{Values for each component measured from the RLC meter and Resistance R from multimeter}
+\label{tab:example}
+\end{minipage}
+\hfill
+\end{table}
+\FloatBarrier % add this to keep all tables before the next subsection
+The phaser current is measured with the TENMA multimeter and the phase is the same as the voltage phase $V_R$. The results are shown below:
+\begin{table}[ht]
+\centering
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} Phasor current [$\mu A$] & Phasor current[deg] & Phasor Representation \\
+\hline
+1256.6 & 16.5 & $ 1256.6 \angle 16.5^\circ $  \\
+\hline
+\end{tabular}
+\caption{Current in Phasor form measured from multimeter and oscilloscope}
+\label{tab:example}
+\end{minipage}
+\end{table}\\
+Next the voltages at the resistor, capacitor, and inductor were measured: 
+\begin{table}[ht]
+\centering
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} $V_S $ [V] & $V_R $ [V] & $V_{RL}$  [V]\\
+\hline
+3.508 & 2.232 & 2.805 \\
+\hline
+\end{tabular}
+\caption{Voltage measured from ELABO multimeter}
+\label{tab:example}
+\end{minipage}
+\end{table}
+\\
+To get the complete phasors $V_R $ and $V_{RL} $ the phases were measured using the oscilloscope. Hard-copies are taken for each measurement of the voltage phase. The phase was measured by subtracting the two waves and finding the difference in phase using the measurement function on the oscilloscope. The results are shown in the following tables and figures (Phase of $\underline{\hat{v}_{S}} = \angle 0^\circ$):
+\begin{table}[!ht]
+\centering
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} $V_R $ [V] & $V_R $ [deg] & Phasor Representation\\
+\hline
+2.27 & 16.5 &  $ 2.27 \angle 16.5^\circ $ \\
+\hline
+\end{tabular}
+\caption{Voltage $V_R$ measured from multimeter and phase measured from oscolliscope}
+\label{tab:example}
+\end{minipage}
+\end{table}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/F0006TEK.png}
+  \caption{Phase of $V_R$ measured using oscilloscope}
+\end{figure} 
+\begin{table}[!ht]
+\centering
+\begin{minipage}{0.8\linewidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} $V_{RL} $ [V] & $V_{RL} $ [deg] & Phasor Representation\\
+\hline
+2.85 & 33.0 & $2.85 \angle 33.0^\circ $ \\
+\hline
+\end{tabular}
+\caption{Voltage $V_RL$ measured from multimeter and phase measured from oscolliscope}
+\label{tab:example}
+\end{minipage}
+\end{table}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/F0007TEK.png}
+  \caption{Phase of $V_{RL}$ measured using oscilloscope}
+\end{figure} 
+
+\chapter {Evaluation - Part 1}
+To calculate the theoretical values of $\underline{v}$ and V of sine and exponential fall wave, for an offset of 0V and 1V we have used the formulas introduced at the beginning, namely arithmetic mean and Root mean square integrals:\\
+$$ \bar{v} = \frac{1}{T} \int_{t_0}^{t_0+T}v(t)dt $$ 
+$$ V=\sqrt{\frac{1}{T}\int_{t_0}^{t_0+T}v(t)^2 dt} $$
+where $v(t) = \hat{v} \sin \omega t + v_{off} $ first and then $\hat{v}(2e^{kt}-1)+v_{off} $.
+Evaluating this integralfor the sine wave, we have: 
+$$  \bar{v} = \frac{1}{T}\int_{t_0}^{t_0+T} \hat{v} \sin \omega t + v_{off}\, dt = \frac{1}{T}\bigg(\hat{v} \frac{-\cos(\omega t)}{\omega}\bigg|_0^T+v_{off}T \bigg)= $$
+$$=\frac{1}{T}\bigg(\hat{v} \frac{-\cos(\omega T)+1}{\omega}+v_{off}T \bigg) $$
+On the other hand to compute the RMS voltage for the sine wave, we use the formula:
+$$V=\sqrt{\frac{1}{T}\int_{t_0}^{t_0+T}(\hat{v} \sin \omega t + v_{off})^2\, dt} =$$
+After some trivial but laboriuous algebra we obtain:
+$$V=\sqrt{\frac{\hat{v}^2}{2}+\frac{2\hat{v}\cdot v_{off}(-\cos(\omega T)+1)}{\omega T}+v_{off}^2}$$
+For the exponetial wave the same procedure follows and we obtain:
+$$\bar{v} = \frac{1}{T}\int_{t_0}^{t_0+T} \hat{v}(2e^{kt}-1)+v_{off} \, dt =  \frac{1}{T}\int_0^{T} 2e^{kt}- \frac{1}{T}\int_{0}^{T} dt+ \frac{1}{T}\int_{0}^{T} v_{off} dt =$$
+$$=\frac{\hat{v}(2(\frac{e^{kt}-1}{k})-T)+v_{off}T}{T}$$
+$$V=\sqrt{\frac{1}{T}\int_0^T( \hat{v}(2e^{kt}-1)+v_{off})^2 \, dt}= $$
+$$ = \sqrt{\frac{1}{T}\int_0^T ( \hat{v}^2(4e^{2kt}-4e^{kt}+1)\, dt+\int_0^T 2\hat{v}(2e^{kt}-1)v_off \, dt+\int_0^T v_{off}^2\, dt} =$$
+$$ = \sqrt{\frac{1}{T} \bigg( \hat{v}^2\bigg(\frac{2e^{2kt}-4e^{kt}+2}{T}+T\bigg)+2\hat{v}v_{off}\bigg(\frac{2e^{kT}-2}{k}-T\bigg)+v_{off}^2T\bigg) }$$
+However, because the calulations in this experiment were very tidious, we decided to use MATLAB to evaluate these integrals.\\
+The MATLAB script is shown below: 
+\begin{verbatim}
+
+syms t;         %defining t as a symbol so that we can use it in integration
+
+freq = 1000;    %frequency in Hertz
+T = 1/freq;     %period
+w = 2*pi*freq;  %angular frequency 
+vpp = 2.04;     %peak to peak voltage
+a = vpp/2;      %amplitude
+k = -6204.3;    %constant of explonential decay function
+voff = 1;       %DC Offset
+
+v1 = @(t) (a*sin(w*t));
+v2 = @(t) (a*(2*exp(k*t) - 1));
+%mean values of the functions calculated when Voff = 0
+mean1 = 1/T*(int(v1(t), t, 0, T));
+mean2 = 1/T*(int(v2(t), t, 0, T)); 
+%mean values of the functions calculated when Voff = 1
+mean1off = 1/T*(int(v1(t)+voff, t, 0, T));            
+mean2off = 1/T*(int(v2(t)+voff, t, 0, T));
+%RMS values of the functions calculated when Voff = 0
+rms1 = sqrt((1/T)*(int((v1(t))^2, t, 0, T)));        
+rms2 = sqrt((1/T)*(int((v2(t))^2, t, 0, T)));
+%RMS values of the functions calculated when Voff = 1
+rms1off = sqrt((1/T)*(int((v1(t) + voff)^2, t, 0, T)));  
+rms2off = sqrt((1/T)*(int((v2(t) + voff)^2, t, 0, T)));
+
+fprintf('*Theoretical mean and RMS values of the Sine wave.\n')
+fprintf('For an offset of 0V:\n mean = %g\n RMS = %g\n', mean1, rms1)
+fprintf('For an offset of 1V:\n mean = %g\n RMS = %g\n', mean1off, rms1off)
+fprintf('*Theoretical mean and RMS values of the Exp Fall.\n')
+fprintf('For an offset of 0V:\n mean = %g\n RMS = %g\n', mean2, rms2)
+fprintf('For an offset of 1V:\n mean = %g\n RMS = %g\n', mean2off, rms2off)
+\end{verbatim}
+This code gives the following output: 
+\begin{verbatim}
+*Theoretical mean and RMS values of the Sine wave.
+For an offset of 0V:
+ MEAN = 0
+ RMS = 0.721249
+For an offset of 1V:
+ MEAN = 1
+ RMS = 1.23296
+*Theoretical mean and RMS values of the Exp Fall.
+For an offset of 0V:
+ MEAN = -0.69186
+ RMS = 0.84046
+For an offset of 1V:
+ MEAN = 0.30814
+ RMS = 0.568026
+\end{verbatim}
+Before we continue to discuss our results, we have to justify the value of $k = 6204$, which was determined from the hard-copies taken, namely the trendline of the slope of the exponential fall function. For convenience 5 "good" values were choosen from the csv files of the hard-copy:
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        % Include your figure here
+        \includegraphics[width=1.1\textwidth]{C:/Users/getoa/Desktop/Files/General Electrical Engineering 2/GEE II - LAB/Reports/chart.png}
+        \caption{The graph of 5 values of exponetial fall wave and its trendline, with the formula showing the slope}
+        \label{fig:your_figure_label}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tabular}{|c|c|}
+        \hline
+        \rowcolor{lightblue} \textbf{t [s]} & \textbf{v[V]} \\ \hline
+        0.00005 & 1.5 \\ \hline
+        0.000075 & 1.3 \\ \hline
+        0.000101 & 1.1 \\ \hline
+        0.000134 & 0.9 \\ \hline
+        0.000179 & 0.7 \\ \hline
+        \end{tabular}
+        \caption{Values used to determine the slope}
+        \label{tab:data}
+    \end{subfigure}%
+    \caption{Figure and table used to determine the value of constant k}
+    \label{fig:figure_and_table}
+\end{figure}
+\\
+As for the multimeter measurements, without pressing the yellow button we can measure either AC voltage or DC voltage, but not both at the same time. When we selected the VAC range, we could measure the RMS (Root Mean Square) value of an AC voltage signal. On the other hand, when we selected the VDC range, we could measure the DC voltage level of a signal, which is simply the average voltage level of the signal over time.
+To determine the values of $ V_{DC} $ and $ V_{AC} $ we can use the following formula:
+$$ V_{RMS}= \sqrt {(V_{DC})^2+(V_{AC})^2} $$
+$$ V_{RMS}= \sqrt {0.^2+0.708^2} = 0.708 \hspace{2cm} V_{RMS}= \sqrt {0.99^2+0.708^2} =1.2246 $$
+$$ V_{RMS}= \sqrt {0.673^2+0.476^2} = 0.8243 \hspace{1cm} V_{RMS}= \sqrt {0.322^2+0.473^2} =0.5722 $$
+The results of all $V_{RMS}$ values using the $ V_{DC}$ and $V_{AC}$ readings with and without offset using the multimeter measurements are shown in the following table:
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|p{1.6cm}|p{1.6cm}|p{2cm}|p{1.6cm}|p{2cm}|}
+\hline
+\rowcolor{lightblue}\multirow{2}{*}{Waveform} & $V_{DC}$ RMS [V] & $V_{AC}$ RMS [V] & $V_{RMS}$ [V] calculated & Offset [V] & $V_{(AC+DC)}$[V] measured \\
+\hline 
+\multirow{2}{*}{Sine} & 0. & 0.708 & 0.708 & 0 & 0.708 \\
+& 0.99 & 0.707 & 1.2246 & 1 & 1.226 \\
+\hline
+\multirow{2}{*}{Exponential Fall} & -0.673 & 0.476 & 0.8243 & 0 & 0.818 \\
+& 0.322 & 0.473 & 0.5722 & 1 & 0.573\\
+\hline
+\end{tabular}
+\caption{Calculated and measured (with multimeter) values for sine and exponential fall waveforms for 0V and 1V offset.}
+\label{tab:my_table}
+\end{table}\\
+As we can see from Table 3.1, the measurements from TENMA Multimeterfor 1V offset and no offset are quite accurate. In this part the errors mainly come from the internal resistance of the TENMA multimeter! \\
+
+In the following table all results from oscilloscope of sine wave and exponenetial fall wave are going to be summarized and then discussed. The measured data will be distinguished from the calculated ones: \\ 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|p{1.6cm}|p{1.9cm}|p{1.6cm}|p{1.9cm}|p{1cm}|p{1.2cm}|}
+\hline
+\rowcolor{lightblue} \multirow{2}{*}{Waveform} & $V_{RMS}$ [V] & $V_{RMS}$ [V] calculated & $V_{mean}$ [V] & $V_{mean}$ [V] calculated & $V_{pp}$  [V] & Offset [V] \\
+\hline
+\multirow{2}{*}{Sine} & 0.723 & 0.72125 & -0.0047 & 0 & 2.06 & 0 \\
+& 1.25 & 0.123296 & 0.99 & 1 & 2.04 & 1\\
+\hline
+\multirow{2}{*}{Exponential Fall} & 0.854 & -0.8243 & -0.704 & -0.69186 & 2.04 & 0 \\
+& 0.586 & 0.568 & 0.333 & 0.30814 & 2.02 & 1\\
+\hline
+\end{tabular} 
+\caption{Calculated and measured (with oscilloscope) values for sine and exponential fall waveforms for 0V and 1V offset.}
+\label{tab:my_table}
+\end{table}
+\newpage 
+As we can see in the Table 3.2 the measured and calculated again are quite accurate. At the exponential fall wave, we can notice that there is a little discrepancy between the values, and that happens mostly because of the  factor k which was approximated using some values from the hard-copy. Other errors may occur mainly because of the oscilloscope attenuation!
+
+\chapter {Evaluation - Part 2 }
+The nominal impedances that we measured are:
+$$ Z_C = \frac{1}{j\omega C+ \frac{1}{R}} \hspace{2cm} Z_L = j\omega L + R $$
+$$ Z_R = 1792 \Omega  \hspace {2cm} Z_A = 500 \Omega $$ 
+However, because of the tidius calculations MATLAB was used again to determine these values. The script is shown below: 
+\begin{verbatim}
+%Vrms determined from Vpp
+Vpp = 10;        
+V = Vpp/(2*sqrt(2));  	
+%values measured from the RLC-meter 
+R = 1792;			
+C = 108.66*10^-9;
+Rc = 365321;
+L = 101.91*10^-3;
+Rl = 372.27;
+Ra = 500;
+c = 1/(1i*w*C);
+l = 1i*w*L;
+%calculation of capacitor impedance, its phase & its magnitude
+Zc = (Rc*c)/(Rc+c);			
+mZc = abs(Zc);
+pZc = angle(Zc);
+pZcd = rad2deg(pZc);
+%calculation of inductor impedance, its phase & its magnitude
+Zl = Rl + l;
+mZl = abs(Zl);
+pZl = angle(Zl);
+pZld = rad2deg(pZl);
+%Total impedance
+ZT= R + Ra + (c - 1i/(w)) + (l + 1i*w*L); 
+Z_mag = abs(ZT);
+Z_phase = angle(ZT); 
+\end{verbatim}
+This code gives the following output : 
+\begin{verbatim}
+Impedance over the resistor ZR is 1792
+Impedance over the capacitor ZC is 1464.69<-89.7703°
+Impedance over the inductor ZL is 740.671<59.8271°
+The total impedance ZT is 2299.38<-4.59149°
+\end{verbatim}
+To calculate $\underline{\hat{i}}$ and $ \underline{\hat{u}} $ values using the nominal (theoretical) input voltage and
+the measured impedance values at 1KHz, the same procedure was used. To distinguish the values pp and rms subscripts were used:
+\begin{verbatim}
+%defining voltage rms and peak to peak
+Vpp = 10;                          
+V = Vpp/(2*sqrt(2));  
+pV = angle(V);
+pVd = rad2deg(pV);
+%calculation of current, its phase & its magnitude
+I = V/(R+Zl+Zc+Ra);              
+Ipp = Vpp/(R+Zl+Zc+Ra);
+mI = abs(I);
+mIpp = abs(Ipp);
+pI = angle(I);
+pId = rad2deg(pI);
+%calculation of voltage over the resistor, its phase & its magnitude
+Vr = I*R;             
+Vrpp = Ipp*R;
+mVr = abs(Vr);
+mVrpp = abs(Vrpp);
+pVr = angle(Vr);
+pVrd = rad2deg(pVr);
+%calculation of voltage over the inductor, its phase & its magnitude
+Vl = I*Zl;     
+Vlpp = Ipp*Zl;
+mVl = abs(Vl);
+mVlpp = abs(Vlpp);
+pVl = angle(Vl);
+pVld = rad2deg(pVl);
+%calculation of voltage over the capacitor, its phase & its magnitude
+Vc = I*Zc;
+Vcpp = Ipp*Zc;
+mVc = abs(Vc);
+mVcpp = abs(Vcpp);
+pVc = angle(Vc);
+pVcd = rad2deg(pVc);	
+%calculation of voltage over the resistor & inductor, its phase & its magnitude
+Vrl = I*(Zl+R);
+Vrlpp = Ipp*(Zl+R);
+mVrl = abs(Vrl);
+mVrlpp = abs(Vrlpp);
+pVrl = angle(Vrl);
+pVrld = rad2deg(pVrl);
+%calculation of voltage over the ammeter, its phase & its magnitude
+Va = I * Ra;
+Vapp = Ipp * Ra;
+mVa = abs(Va);
+mVapp = abs(Vapp);
+pVa = angle(Va);
+pVad = rad2deg(pVa);
+\end{verbatim}
+By running this we get:
+\begin{verbatim}
+*Current and voltage values using the nominal input voltage 
+Ipp [A] 0.00357846<17.1572°
+Irms [A] 0.00126518<17.1572°
+Vpp [V] 10<0°
+Vrms [V] 3.53553<0°
+Vpp over the resistor [V] 6.41259<17.1572°
+Vrms over the resistor [V] 2.26719<17.1572°
+Vpp over inductor [V] 2.65046<76.9843°
+Vrms over inductor [V]0.937079<76.9843°
+Vpp over the capacitor [V] 5.24134<-72.6131°
+Vrms over the capacitor [V] 1.8531<-72.6131°
+Vpp over resistor & inductor [V] 8.0766<33.6386°
+Vrms over resistor & inductor [V] 2.85551<33.6386°
+Vpp over the ammeter [V] 1.78923<17.1572°
+Vrms over the ammeter [V] 0.632588<17.1572°
+\end{verbatim}
+Now we can collect all these voltages and currents in the table and discuss the results. \\
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} \textbf{Parameter} & \textbf{pp Value} & \textbf{rms Value}\\
+\hline
+Current $I_s$ [A] & $0.00357846\angle 17.1572^\circ $  & $0.00126518\angle 17.1572^\circ $\\
+\hline
+Voltage $V_s$ [V] & $10\angle0^\circ$  & $3.53553\angle0^\circ$\\
+\hline
+Voltage over resistor $V_R$ [V] & $ 6.41259\angle 17.1572^\circ$ &  $2.26719\angle 17.1572^\circ$\\
+\hline
+Voltage over inductor $V_L$ [V] & $2.65046\angle 76.9843^\circ$ &  $0.937079\angle 76.9843^\circ$ \\
+\hline
+Voltage over capacitor $V_C$ [V] & $5.24134\angle -72.6131^\circ$ &  $1.8531\angle -72.6131^\circ$ \\
+\hline
+Voltage over resistor \& inductor $V_RL$ [V] & $8.0766\angle 33.6386^\circ$ & $2.85551\angle 33.6386^\circ$ \\
+\hline
+Voltage over ammeter $V_A$ [V] & $1.78923\angle 17.1572^\circ$ & $0.632588\angle 17.1572^\circ$ \\
+\hline
+\end{tabular}
+\caption{Calculated values of currents and voltages in rms and peaktopeak together with the phase angle}
+\end{table}
+\newpage 
+The impedances calculated earlier are shown also in the table 4.2
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\rowcolor{lightblue} \textbf{Component} & \textbf{Impedance} \\
+\hline
+Resistor ($Z_R$) & 1792$\angle0^\circ$ \\
+\hline
+Capacitor ($Z_C$) & 1464.69$\angle-89.7703^\circ$\\
+\hline
+Inductor ($Z_L$) & 740.671$\angle59.8271^\circ$\\
+\hline
+Ammeter ($Z_A$) & 500 $\angle0^\circ$ \\
+\hline
+Total Impedance ($Z_T$) & 2299.38$\angle-4.59149^\circ$ \\
+\hline
+\end{tabular}
+\caption{Calculated phasor form of all impedances from the measured components in RLC meter}
+\end{table}
+
+As we can see the results in Table 4.1 are pretty close to the values measured and shown from table 2.10 to 2.14. However, it is worth of noting that the RLC meter is not "perfect" and contributes in the overall error for these values! \\Now we determine the voltages over each element using the measured values. 
+\vspace{0.5cm}
+For this we can use the KVL: 
+$$\sum_i V_i = 0 \implies V_L + V_R + V_C+V_A-V_s = 0 $$
+$$ V_L = V_s- V_R - V_C - V_A \hspace{2cm} V_C =  V_s- V_{RL} -V_A $$
+Then by Ohm's Law we have:
+$$Z_R = \frac{V_R}{I_s} \hspace{2cm} Z_C = \frac{V_C}{I_s} \hspace{2cm} Z_L = \frac{V_L}{I_s}  $$
+For calcualtions again MATLAB was used (code shown in Appendix). The results are summarized in the table below:
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\rowcolor{lightblue} \textbf{Parameter}  &\textbf {pp Value} & \textbf{rms Value}  \\
+\hline
+Current $I_s$ [A] & 0.00340784$\angle16.5^\circ$ & 0.0012566$\angle16.5^\circ$ \\
+\hline
+Voltage $V_s$ [V] & 9.92212$\angle0^\circ$  & 3.508$\angle0^\circ$ \\
+\hline
+Voltage over resistor $V_R$ [V]  & 6.42053$\angle17.1572^\circ$ &  2.232$\angle17.1572^\circ$ \\
+\hline
+Voltage over inductor $V_L$ [V] & 2.63702$\angle64.8556^\circ$ &  0.932326$\angle64.8556^\circ$ \\
+\hline
+Voltage over capacitor $V_C$ [V] &  5.10749$\angle-73.4174^\circ$ & 2.43874$\angle-73.4174^\circ$\\
+\hline
+Voltage over resistor \& inductor $V_RL$ [V] & 8.06102$\angle33.0^\circ$ & 2.85$\angle33.0^\circ$ \\
+\hline
+Voltage over ammeter $V_A$ [V]& 1.7771$\angle16.5^\circ$ & 0.6283$\angle16.5^\circ$ \\
+\hline
+\end{tabular}
+\caption{Measured values of voltages in rms and amplitude in phasor form, from ELABO with VC and VL calculated}
+\end{table}
+\vspace{-0.5cm}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{lightblue} \textbf{Component} & \textbf{Impedance} \\
+\hline
+Resistor ($Z_R$) & $1806.46\angle0^\circ$ \\
+\hline
+Capacitor ($Z_C$) & $1437.03\angle-89.9174^\circ$ \\
+\hline
+Inductor ($Z_L$) & $741.943\angle60.2499^\circ$ \\
+\hline
+Ammeter ($Z_A)$ & $500.0\angle0^\circ$  \\
+\hline
+\end{tabular}
+\caption{Caclulated phasor form of all impedances from the measured voltages in ELABO} 
+\end{table}
+\newpage To determine the element values of the impedances of capacitor and inductor (from the RLC meter) we have the formula below:\\
+For the inductor:
+$$ 741.943<60.2499^\circ = R+j\omega L $$
+For the capacitor:
+$$ \frac{1}{1437.03<-89.9174 ^\circ} = j \omega C + \frac{1}{R} $$
+After converitng these values to rectangular form, using MATLAB we can easily find the values for $C_p$, $R_p$, $L_s$, and $R_s$, all these values are summarized in the table below:
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|ccc|ccc|cc|}
+\hline
+\multirow{2}{*}{\textbf{Parameter}} & \multicolumn{3}{c|}{\textbf{$Z_C$}} & \multicolumn{3}{c|}{\textbf{$Z_L$}} & \multicolumn{2}{c|}{\textbf{$Z_R$}} \\
+\cline{2-9} 
+ & \textbf{R$_p$ ($k\Omega$)} & \textbf{C$_p$} (nF) & \textbf{jX} & \textbf{R$_s$ ($\Omega$)} & \textbf{L$_s$} (mH) & \textbf{jX} & \textbf{R} ($\Omega$) & \textbf{jX} \\
+\hline
+\textbf{Calculated} & 996.759 & 110.753 & -1437.03 & 368.165 & 102.52 & 644.154 & 1806.46 & 0 \\
+\hline
+\textbf{Measured} & 365.321 & 108.66  & -1464.68 & 372.27 & 101.91 & 640.319 &  1792 & 0\\
+\hline
+\end{tabular}
+\caption{Measured and calculated values of parallel capacitance and resitance and series Inductance and resitance, together with the reactance for both components}
+\label{tab:values}
+\end{table}
+\\
+As we can see the measured and calculated values on Table 4.5 are comparable and we can notice a discrepancy at the Resitance Rp, which is mostly due to the error from the RLC meter, which is accumulated and then gives us a big error. Besides that, other components are close to their measured counterparts in their respective units. For all of the above calculations the procedure is explained in the MATLAB script shown at the Appendix. \\ To conclude the report we summarized every result for this part at the table below:
+\newpage
+\begin{table}[ht]
+\centering
+\begin{tabular}{|p{2.7cm}|p{2.6cm}|p{2.6cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\multicolumn{1}{|c|}{\textbf{}} &\multicolumn{2}{c|}{\textbf{Calculated}} & \multicolumn{2}{c|}{\textbf{Measured}} \\
+\hline
+\rowcolor{lightblue} \textbf{Parameter} & \textbf{pp Value} & \textbf{rms Value } & \textbf{pp Value} & \textbf{rms Value}\\
+\hline
+$I_s$ [A] & $0.00358\angle 17.16^\circ$ & $0.00127\angle 17.16^\circ$ & $0.00341\angle 16.5^\circ$ & $0.00126\angle 16.5^\circ$ \\
+\hline
+$V_s$ [V] & $10\angle0^\circ$ & $3.54\angle0^\circ$ & $9.92\angle0^\circ$ & $3.51\angle0^\circ$ \\
+\hline
+$V_R$ [V] & $6.41\angle 17.16^\circ$ & $2.27\angle 17.16^\circ$ & $6.42\angle 17.16^\circ$ & $2.23\angle 17.16^\circ$ \\
+\hline
+$V_L$ [V] & $2.65\angle 76.98^\circ$ & $0.937\angle 76.98^\circ$ & $2.64\angle 64.86^\circ$ & $0.9323\angle 64.86^\circ$ \\
+\hline
+$V_C$ [V] & $5.24\angle -72.61^\circ$ & $1.85\angle -72.61^\circ$ & $5.11\angle -73.42^\circ$ & $2.44\angle -73.42^\circ$ \\
+\hline
+$V_{R L}$ [V] & $8.08\angle 33.64^\circ$ & $2.86\angle 33.64^\circ$ & $8.06\angle 33.0^\circ$ & $2.85\angle 33.0^\circ$ \\
+\hline
+$V_A$ [V] & $1.79\angle 17.16^\circ$ & $0.63\angle 17.16^\circ$ & $1.78\angle 16.5^\circ$ & $0.63\angle 16.5^\circ$ \\
+\hline
+\rowcolor{lightblue} \multicolumn{5}{|c|}{\textbf{Impedance}} \\
+\hline
+\multicolumn{1}{|c|}{$Z_R [\Omega]$} & \multicolumn{2}{c|}{1792$\angle0^\circ$} & \multicolumn{2}{c|}{$1806.46\angle0^\circ$}\\
+\hline
+\multicolumn{1}{|c|}{$Z_C [\Omega]$} & \multicolumn{2}{c|}{1464.69$\angle-89.7703^\circ$} & \multicolumn{2}{c|}{$1437.03\angle-89.9174^\circ$}\\
+\hline
+\multicolumn{1}{|c|}{$Z_L [\Omega]$} & \multicolumn{2}{c|}{740.671$\angle59.8271^\circ$} & \multicolumn{2}{c|}{$741.943\angle60.2499^\circ$}\\
+\hline
+\rowcolor{lightblue} \multicolumn{5}{|c|}{\textbf{RLC METER}} \\
+\hline
+\multirow{3}{*}{\textbf{$Z_C$}} & $R_p$ [$k\Omega$] & 996.759 & $R_p$ [$k\Omega$] & 365.321 \\
+& $C_p$ [nF] & 110.753 &  $C_p$ [nF] & 108.66\\
+& $J_x$ [$\Omega$] & -1437.03 & $J_x$ [$\Omega$] & -1464.68 \\
+\cline{2-5}
+\hline
+\multirow{3}{*}{\textbf{$Z_L$}} & $R_s$ [$\Omega$] & 368.165 & $R_s$ [$\Omega$] & 372.27 \\
+& $L_s$ [mH] & 102.52 &  $L_s$ [mH] & 101.91 \\
+& $J_x$ [$\Omega$] & 644.154 & $J_x$ [$\Omega$] & 640.319 \\
+\cline{2-5}
+\hline
+\multirow{2}{*}{\textbf{$Z_R$}} & $R$ [$\Omega$] & 1806.46 & $R$ [$\Omega$] & 1792 \\
+& $J_x$ [$\Omega$] & 0 & $J_x$ [$\Omega$] & 0 \\
+\cline{2-5}
+\hline
+\end{tabular}
+\caption{Measured and calculated values of voltages and source cuurent, including all impedances, parallel capacitance and resitance, series Inductance and resitance, together with the reactance for both components in their respective units}
+\end{table}
+\chapter{Conclusion}
+During the experiment, we learned various methods to analyze AC signals, with the oscilloscope being the primary tool. However, for low frequencies, the multimeter may also prove useful. We utilized the oscilloscope to display the signals generated by the function generator and employed the measure function with the multimeter to analyze the RMS voltage and peak-to-peak voltage. Additionally, we studied the impact of reactive components such as capacitors and inductors on circuits with the sinusoidal wave we fed through the simple RCL circuit. The RLC meter allowed us to determine the values of the inductor and capacitor.
+
+In the first part of the experiment, we observed minor errors, likely caused by the oscilloscope's inaccuracy, but without any methodical error. The measured values were close to the theoretical ones. Additionally, we found an error in the calculated value for the resistor in parallel with the capacitor. Nevertheless, excluding the resistor in parallel with the capacitor, the measured and calculated values were very close to each other.
+\setcounter{chapter}{6}
+\begin{thebibliography}{9}
+\bibitem{texbook}
+Alexander, C. K., \&amp; O., S. M. N. (2021). Fundamentals of Electric Circuits. McGraw-Hill Education.
+\bibitem{ltextbook}
+Pagel, U. (April, 2023) http://uwp-raspi-lab.jacobs.jacobs-university.de/01.0.generaleelab/01.2.generaleelab2/20230118-ch-211-b-manual.pdf.
+\bibitem{texbook}
+Matlab. MathWorks. Retrieved April 16, 2023, from https://www.mathworks.com/products/matlab.html 
+\end{thebibliography}
+\chapter{Appendix}
+MATLAB script that was used during the evaluation:
+\begin{verbatim}
+
+close all
+clear
+clc
+%% Part 1: Measure AC Signal Properties
+
+syms t;         %defining t as a symbol so that we can use it in integration
+
+freq = 1000;    %frequency in Hertz
+T = 1/freq;     %period
+w = 2*pi*freq;  %angular frequency 
+vpp = 2.04;     %peak to peak voltage
+a = vpp/2;      %amplitude
+k = -6204.3;    %constant of explonential decay function
+voff = 1;       %DC Offset
+
+v1 = @(t) (a*sin(w*t));
+v2 = @(t) (a*(2*exp(k*t) - 1));
+%mean values of the functions calculated when Voff = 0
+mean1 = 1/T*(int(v1(t), t, 0, T));                 
+mean2 = 1/T*(int(v2(t), t, 0, T)); 
+%mean values of the functions calculated when Voff = 1
+mean1off = 1/T*(int(v1(t)+voff, t, 0, T));              
+mean2off = 1/T*(int(v2(t)+voff, t, 0, T));        
+%RMS values of the functions calculated when Voff = 0
+rms1 = sqrt((1/T)*(int((v1(t))^2, t, 0, T)));      
+rms2 = sqrt((1/T)*(int((v2(t))^2, t, 0, T)));
+%RMS values of the functions calculated when Voff = 1
+rms1off = sqrt((1/T)*(int((v1(t) + voff)^2, t, 0, T)));
+rms2off = sqrt((1/T)*(int((v2(t) + voff)^2, t, 0, T)));
+
+fprintf('*Theoretical mean and RMS values of the Sine wave.\n')
+fprintf('For an offset of 0V:\n MEAN = %g\n RMS = %g\n', mean1, rms1)
+fprintf('For an offset of 1V:\n MEAN = %g\n RMS = %g\n', mean1off, rms1off)
+fprintf('*Theoretical mean and RMS values of the Exp Fall.\n')
+fprintf('For an offset of 0V:\n MEAN = %g\n RMS = %g\n', mean2, rms2)
+fprintf('For an offset of 1V:\n MEAN = %g\n RMS = %g\n', mean2off, rms2off)
+
+%% Part 2: Measure AC Circuit Properties
+%source voltage (in volts) & rms voltage
+Vpp = 10;                          
+V = Vpp/(2*sqrt(2));  
+pV = angle(V);
+pVd = rad2deg(pV);
+
+%values measured from the RLC-meter (all recorded in the respective SI units)
+R = 1792;                         
+C = 108.66*10^-9;
+Rc = 365321;
+L = 101.91*10^-3;
+Rl = 372.27;
+Ra = 500;
+c = 1/(1i*w*C);
+l = 1i*w*L;
+
+%calculation of capacitor impedance, its phase & its magnitude
+Zc = (Rc*c)/(Rc+c);              
+mZc = abs(Zc);
+pZc = angle(Zc);
+pZcd = rad2deg(pZc);
+%calculation of inductor impedance, its phase & its magnitude
+Zl = Rl + l;                     
+mZl = abs(Zl);
+pZl = angle(Zl);
+pZld = rad2deg(pZl);
+%Total impedance
+ZT= R + Ra + (c - 1i/(w)) + (l + 1i*w*L); 
+ZT_mag = abs(ZT);
+ZT_phase = angle(ZT); 
+
+%calculation of current, its phase & its magnitude
+I = V/(R+Zl+Zc+Ra);              
+Ipp = Vpp/(R+Zl+Zc+Ra);
+mI = abs(I);
+mIpp = abs(Ipp);
+pI = angle(I);
+pId = rad2deg(pI);
+%calculation of voltage over the resistor, its phase & its magnitude
+Vr = I*R;             
+Vrpp = Ipp*R;
+mVr = abs(Vr);
+mVrpp = abs(Vrpp);
+pVr = angle(Vr);
+pVrd = rad2deg(pVr);
+%calculation of voltage over the inductor, its phase & its magnitude
+Vl = I*Zl;     
+Vlpp = Ipp*Zl;
+mVl = abs(Vl);
+mVlpp = abs(Vlpp);
+pVl = angle(Vl);
+pVld = rad2deg(pVl);
+%calculation of voltage over the capacitor, its phase & its magnitude
+Vc = I*Zc;
+Vcpp = Ipp*Zc;
+mVc = abs(Vc);
+mVcpp = abs(Vcpp);
+pVc = angle(Vc);
+pVcd = rad2deg(pVc);
+%calculation of voltage over the resistor & inductor, its phase & its magnitude
+Vrl = I*(Zl+R);
+Vrlpp = Ipp*(Zl+R);
+mVrl = abs(Vrl);
+mVrlpp = abs(Vrlpp);
+pVrl = angle(Vrl);
+pVrld = rad2deg(pVrl);
+%calculation of voltage over the ammeter, its phase & its magnitude
+Va = I * Ra;
+Vapp = Ipp * Ra;
+mVa = abs(Va);
+mVapp = abs(Vapp);
+pVa = angle(Va);
+pVad = rad2deg(pVa);
+%Calculations using measured voltages converted to peak to peak(KVL)
+IS = 0.0012566*2*sqrt(2)*exp(1j*(16.5*pi/180));
+VS = 3.508*2*sqrt(2)*exp(1j*(0*pi/180));
+VR = 2.27*2*sqrt(2)*exp(1j*(16.5*pi/180));
+VRL = 2.85*2*sqrt(2)*exp(1j*(33.0*pi/180));
+VA = IS*500;
+%to find rms devide by 2sqrt(2)
+VC = VS-VRL-VA;
+VL = VS-VC-VR-VA;
+%Calculations of impedances using measured voltages
+ZA = VA/IS;
+ZC = VC/IS;
+ZL = VL/IS;
+ZR = VR/IS;
+%calculate the impedances elements rectangular form 
+disp('Rectangular form of impedances')
+disp(ZC);
+disp(ZL);
+disp(ZR);
+disp(ZA);
+
+%finding the Capacitance and Inductance elements with calculated values
+Rp = (1/abs(ZC)*cos(angle(ZC)))^-1;
+Cp = 1/abs(ZC)*1/w;
+Ls = imag(ZL)/w;
+Rs = real(ZL);
+
+%formulas to calculate jx of C and L from measurements
+ResC = real(1/(1i*w*C+1/Rc));
+jxC = imag(1/(1i*w*C+1/Rc));
+ResL = real (1i*w*L+R);
+jxL = imag (1i*w*L+R);
+
+fprintf('*The impedance of R, L and C from the measured current and voltages\n')
+fprintf('Impedance over the resistor ZR is %g\n', R)
+fprintf('Impedance over the capacitor ZC is %g<%g°\n', mZc, pZcd)
+fprintf('Impedance over the inductor ZL is %g<%g°\n', mZl, pZld)
+fprintf('The total impedance is %g<%g°\n',ZT_mag,rad2deg(ZT_phase)); 
+
+fprintf('*Current and voltage values using the nominal input voltage\n')
+fprintf('Ipp [A] %g<%g°\n', mIpp, pId)
+fprintf('Irms [A] %g<%g°\n', mI, pId)
+fprintf('Vpp [V] %g<%g°\n', Vpp, pVd )
+fprintf('Vrms [V] %g<%g°\n', V, pVd)
+fprintf('Vpp over the resistor [V] %g<%g°\n', mVrpp, pVrd)
+fprintf('Vrms over the resistor [V] %g<%g°\n', mVr, pVrd)
+fprintf('Vpp over inductor [V] %g<%g°\n', mVlpp, pVld)
+fprintf('Vrms over inductor [V]%g<%g°\n', mVl, pVld)
+fprintf('Vpp over the capacitor [V] %g<%g°\n', mVcpp, pVcd)
+fprintf('Vrms over the capacitor [V] %g<%g°\n', mVc, pVcd)
+fprintf('Vpp over resistor & inductor [V] %g<%g°\n', mVrlpp, pVrld)
+fprintf('Vrms over resistor & inductor [V] %g<%g°\n', mVrl, pVrld)
+fprintf('Vpp over the ammeter [V] %g<%g°\n', mVapp, pVad)
+fprintf('Vrms over the ammeter [V] %g<%g°\n', mVa, pVad)
+%peak to peak values from measurements 
+fprintf('Vs [V] %g<%g°\n', VS, pVd)
+fprintf('IS [A] %g<%g°\n', IS, pId)
+fprintf ('Voltage at inductor VL [V]%g<%g°\n', abs(VL),angle(VL)*180/pi);
+fprintf ('Voltage at capacitor VC [V]%g<%g°\n', abs(VC), angle(VC)*180/pi);
+fprintf ('Voltage at ammeter VA [V]%g<%g°\n', abs(VA), angle(VA)*180/pi);
+fprintf('Voltage over resi. & indct. [V] %g<%g°\n', abs(VRL), angle(VRL)*180/pi);
+fprintf('Voltage over resistor [V] %g<%g°\n', abs(VR), angle(VR)*180/pi);
+%values of impedances calculated from above
+fprintf('Impedance over the resistor ZR is %g<%g°\n', abs(ZR), angle(ZR)*180/pi)
+fprintf('Impedance over the capacitor ZC is %g<%g°\n', abs(ZC), angle(ZC)*180/pi)
+fprintf('Impedance over the inductor ZL is %g<%g°\n',abs(ZL), angle(ZL)*180/pi)
+fprintf('Impedance over the ammeter ZA is %g<%g°\n',abs(ZA), angle(ZA)*180/pi)
+
+fprintf('Capacitor Cp %g\n',Cp);
+fprintf('Resistance Rp %g\n',Rp);
+fprintf('Inductance Ls %g\n',Ls);
+fprintf('Resistance Rs %g\n',Rs);
+
+fprintf('Jx of ZC  %g\n',jxC);
+fprintf('R of ZC %g\n',ResC);
+fprintf('Jx of ZL %g\n',jxL);
+fprintf('R of ZL %g\n',ResL);
+\end{verbatim}
+\end{document}
